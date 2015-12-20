@@ -42,7 +42,7 @@
             android:layout_width="fill_parent"
             android:layout_height="117.0dip" >
  
-               <com.itheima.redbaby.widget.MyGallery
+               <com.lianmeng.core.framework.widget.MyGallery
                 android:id="@+id/gallery"
                 style="@style/MGallery"
                 android:layout_width="wrap_content"

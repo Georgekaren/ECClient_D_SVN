@@ -42,7 +42,7 @@
 	<string name="get_address_list">android_address.jsp</string>
 	<string name="save_address">addresssave.jsp</string>
 	<string name="login">login</string>
-	<string name="app_host">http://192.168.1.16:8080/ECServer_D/</string>
+	<string name="app_host">http://192.168.1.23:8080/ECServer_D/</string>
 
 	<string name="topic_plist">topic/plist</string>
 	<string name="home">home</string>
