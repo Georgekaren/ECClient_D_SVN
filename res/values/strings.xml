@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">红孩子欢迎您!</string>
+    
+    <string name="hello">廉盟超市部欢迎您!</string>
     <string name="login_name">用户名：</string>
     <string name="login_pwd">密码：</string>
-    <string name="app_name">红孩子</string>
+    <string name="app_name">廉盟</string>
     <string name="net_error">当前网络不可用，请先连接Internet！</string>
 	<string name="my_account_title">我的账户</string>
 	<string name="my_ordr_title">我的订单</string>
@@ -17,7 +18,7 @@
 	<string name="menu_history">浏览历史</string>
 	<string name="menu_exit">退出</string>
 	<string name="about_title">关 于</string>
-	<string name="about_comp">天津红孩子商贸有限公司</string>
+	<string name="about_comp">廉盟超市合作计划</string>
 	<string name="more">更多</string>
 	<string name="category_title">分类</string>
 	<string name="no_information">加载中...</string>
@@ -42,7 +43,7 @@
 	<string name="get_address_list">android_address.jsp</string>
 	<string name="save_address">addresssave.jsp</string>
 	<string name="login">login</string>
-	<string name="app_host">http://192.168.1.23:8080/ECServer_D/</string>
+	
 
 	<string name="topic_plist">topic/plist</string>
 	<string name="home">home</string>

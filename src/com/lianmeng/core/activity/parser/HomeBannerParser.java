@@ -8,20 +8,20 @@ import org.json.JSONObject;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.lianmeng.core.activity.vo.HomeBanner;
+import com.lianmeng.core.activity.vo.HomeBannerVo;
 
 /**
  * 首页baner 解析
  * @author liu
  *
  */
-public class HomeBannerParser extends BaseParser<List<HomeBanner>>{
+public class HomeBannerParser extends BaseParser<List<HomeBannerVo>>{
 
 	@Override
-	public List<HomeBanner> parseJSON(String paramString) throws JSONException {
+	public List<HomeBannerVo> parseJSON(String paramString) throws JSONException {
 		if (!TextUtils.isEmpty(checkResponse(paramString))) {
 			JSONObject j = new JSONObject(paramString);
- 			return JSON.parseArray(j.getString("home_banner"), HomeBanner.class);
+ 			return JSON.parseArray(j.getString("DATA_INFO"), HomeBannerVo.class);
 		}
 		return null;
 	}

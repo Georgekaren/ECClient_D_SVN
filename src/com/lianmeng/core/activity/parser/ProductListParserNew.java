@@ -20,14 +20,14 @@ public class ProductListParserNew extends BaseParser<Map<String,Object>> {
 			Map<String,Object> map = new HashMap<String, Object>();
 			if(super.checkResponse(paramString)!=null){
 				JSONObject jsonObject = new JSONObject(paramString);
-				String productlist = jsonObject.getString("productlist");
+				String productlist = jsonObject.getString("DATA_INFO");
 				List<ProductListVo> productList = JSON.parseArray(productlist, ProductListVo.class);
 				map.put("productlist", productList);
 				
-				String count = jsonObject.getString("list_count");
+				String count = jsonObject.getString("DATA_CNT");
 				map.put("list_count", count);
 				
-				String list_filter = jsonObject.getString("list_filter");
+				String list_filter = jsonObject.getString("PUBS_FINALS");
 				map.put("list_filter", JSON.parseObject(list_filter, FilterCategory.class));
 				
 				return map;

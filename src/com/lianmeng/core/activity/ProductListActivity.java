@@ -127,12 +127,7 @@ public class ProductListActivity extends BaseWapperActivity {
 		super.onHeadRightButton(v);
 		Intent siftIntent = new Intent(ProductListActivity.this,ProductFilterActivity.class);
 		siftIntent.putExtra("cId", getIntent().getStringExtra("cId"));
-		/*
-		List<FilterCategory>  fc = (List<FilterCategory>) mapAllResult.get("list_filter");
-		siftIntent.putExtra("", fc.get(1));
 		
-		siftIntent.putParcelableArrayListExtra("list_filter", value)
-		*/
 		startActivityForResult(siftIntent, 121);
 	}
 	
@@ -158,7 +153,7 @@ public class ProductListActivity extends BaseWapperActivity {
 	private void getRankSaleData(String orderby,String sift) {
 		
 		RequestVo prodReqVo = new RequestVo();
-		prodReqVo.requestUrl = R.string.prodList;
+		prodReqVo.requestUrl = R.string.sysRequestServLet;
 		prodReqVo.context = context;
 		HashMap<String, String> prodMap = new HashMap<String, String>();
 		prodMap.put("page", "1");
@@ -166,14 +161,19 @@ public class ProductListActivity extends BaseWapperActivity {
 		cId = getIntent().getStringExtra("cId");
 		Logger.i(TAG, cId);
 		prodMap.put("cId", cId);
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASECONTENTANDCOLORPROD\",\"type\":\""+cId+"\"";
 		
 		
+		//{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASECONTENTANDCOLORPROD\",\"type\":\"1\",\"ordertype\":\"sale_down\"}}
 		if(sift!=null){
 			prodMap.put("filter", filterData);
 		}
 		if(orderby!=null){
 			prodMap.put("orderby", orderby);
+			inmapData=inmapData+",\"ordertype\":\""+orderby+"\"";
 		}
+		inmapData=inmapData+"}}";
+		prodMap.put("JsonData", inmapData);
 		prodReqVo.requestDataMap = prodMap;
 		
 		prodReqVo.jsonParser = new ProductListParser();
@@ -231,8 +231,8 @@ public class ProductListActivity extends BaseWapperActivity {
 		tv_prodlist_noresult = (TextView) findViewById(R.id.textNull);
 		
 	
-		setTitle("产品列表");
-		setHeadRightText("筛选");
+		setTitle(getString(R.string.prodListTitleTitleNameMsg));
+		setHeadRightText(getString(R.string.prodListTitleFilterHeadNameMsg));
 		setHeadRightVisibility(View.VISIBLE);
 		tv_prodlist_ranksale.setOnClickListener(this);
 		tv_prodlist_rankprice.setOnClickListener(this);
@@ -266,12 +266,19 @@ public class ProductListActivity extends BaseWapperActivity {
 	@Override
 	protected void processLogic() {
 		RequestVo prodReqVo = new RequestVo();
-		prodReqVo.requestUrl = R.string.prodList;
+		prodReqVo.requestUrl = R.string.sysRequestServLet;
 		prodReqVo.context = context;
 		HashMap<String, String> prodMap = new HashMap<String, String>();
 		prodMap.put("page", "1");
 		prodMap.put("pageNum", "8");
 		prodMap.put("cId", getIntent().getStringExtra("cId"));
+        String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASECONTENTANDCOLORPROD\",\"type\":\""+getIntent().getStringExtra("cId")+"\"";
+		if(orderby!=null){
+			prodMap.put("orderby", orderby);
+			inmapData=inmapData+",\"ordertype\":\""+orderby+"\"";
+		}
+		inmapData=inmapData+"}}";
+		prodMap.put("JsonData", inmapData);
 		prodReqVo.requestDataMap = prodMap;
 		prodReqVo.jsonParser = new ProductListParser();
 		super.getDataFromServer(prodReqVo, new DataCallback<List<ProductListVo>>(){
@@ -298,7 +305,7 @@ public class ProductListActivity extends BaseWapperActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				int itemID = productInfos.get(position).getId();
+				String itemID = productInfos.get(position).getId();
 				//ProductDetailActivity
 				Intent detailIntent = new Intent(ProductListActivity.this,ProductDetailActivity.class);
 				detailIntent.putExtra("id", itemID);

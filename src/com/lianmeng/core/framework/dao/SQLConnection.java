@@ -1,6 +1,7 @@
 package com.lianmeng.core.framework.dao;
 
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.framework.util.SysU;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,8 +11,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SQLConnection extends SQLiteOpenHelper {
 
 	private static final String TAG = "SQLConnection";
-	public static final String DATABASE_NAME = "redbaby.db"; // 数据库名称
-	public static final int DATABASE_VERSION = 2;// 数据库版本
+	public static final String DATABASE_NAME = SysU.DATABASE_NAME; // 数据库名称
+	public static final int DATABASE_VERSION = SysU.DATABASE_VERSION;// 数据库版本
 
 	public SQLConnection(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

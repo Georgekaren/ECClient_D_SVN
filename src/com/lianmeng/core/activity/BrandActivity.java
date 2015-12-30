@@ -1,6 +1,7 @@
 package com.lianmeng.core.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.lianmeng.core.activity.R;
@@ -38,14 +39,19 @@ public class BrandActivity extends BaseWapperActivity {
 		setContentView(R.layout.brand_activity);
 		//setContentView(R.layout.product_list_activity);
 		list = new ArrayList<BrandCategory>();
-		setTitle("推荐品牌");
+		setTitle(getString(R.string.brandProdTitleTitleNameMsg));
 	}
 	//执行逻辑
 	@Override
 	protected void processLogic() {
 		RequestVo reqVo = new RequestVo();
-		reqVo.requestUrl = R.string.url_brand;
+		reqVo.requestUrl = R.string.sysRequestServLet;
 		reqVo.context = context;
+		HashMap<String, String> requestDataMap = new HashMap<String, String>();
+		//4 代表文具
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYPRODTYPEVALUELIST\"}}";
+		requestDataMap.put("JsonData", inmapData);
+		reqVo.requestDataMap = requestDataMap;
 		
 		reqVo.jsonParser = new BrandParser();
 		

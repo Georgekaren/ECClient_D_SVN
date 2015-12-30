@@ -1,5 +1,7 @@
 package com.lianmeng.core.activity;
 
+import java.util.HashMap;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
@@ -13,6 +15,7 @@ import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.activity.vo.User;
 import com.lianmeng.core.framework.util.Constant;
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.framework.util.SysU;
 
 public class AccountActivity extends BaseWapperActivity {
 	private static final String TAG = "AccountActivity";
@@ -74,8 +77,12 @@ public class AccountActivity extends BaseWapperActivity {
 	protected void processLogic() {
 		RequestVo vo = new RequestVo();
 		vo.context = context;
-		vo.requestUrl = R.string.userinfo;
+		vo.requestUrl = R.string.sysRequestServLet;
 		vo.jsonParser = new UserinfoParser();
+		String inmapData="{\"ServiceName\":\"userManagerService\" , \"Data\":{\"ACTION\":\"QRYUSERINFO\",\"id\":\""+SysU.USERID+"\"}}";
+		HashMap<String, String> prodMap = new HashMap<String, String>();
+		prodMap.put("JsonData", inmapData);
+		vo.requestDataMap = prodMap;
 		super.getDataFromServer(vo, new DataCallback<User>() {
 			@Override
 			public void processData(User paramObject, boolean paramBoolean) {
@@ -101,8 +108,11 @@ public class AccountActivity extends BaseWapperActivity {
 
 	@Override
 	protected void onHeadRightButton(View v) {
-		 
-		RequestVo reqVo = new RequestVo(R.string.url_logout, context, null, new SuccessParser());
+		HashMap map = new HashMap();
+		map.put("loginact", "logout");
+		String inMapData="{\"ServiceName\":\"userManagerService\" , \"Data\":{\"ACTION\":\"LOGOUTUSER\"}}";
+		map.put("JsonData", inMapData);
+		RequestVo reqVo = new RequestVo(R.string.sysRequestLoginServLet, context, map, new SuccessParser());
 		super.getDataFromServer(reqVo, new DataCallback<Boolean>() {
 			@Override
 			public void processData(Boolean paramObject, boolean paramBoolean) {

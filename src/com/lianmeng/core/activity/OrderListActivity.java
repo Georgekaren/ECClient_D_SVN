@@ -23,6 +23,7 @@ import com.lianmeng.core.activity.vo.OrderList;
 import com.lianmeng.core.activity.vo.PageVo;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.util.Constant;
+import com.lianmeng.core.framework.util.SysU;
 
 public class OrderListActivity extends BaseWapperActivity implements
 		OnItemClickListener {
@@ -150,8 +151,12 @@ public class OrderListActivity extends BaseWapperActivity implements
 		vo.requestDataMap.put("pageNum",pageVo.pageLenth+"");
 
 		vo.jsonParser = new OrderListParser();
-		vo.requestUrl = R.string.orderlist;
-		Log.i(TAG, R.string.orderlist+"");
+		vo.requestUrl = R.string.sysRequestServLet;
+		String inmapData="{\"ServiceName\":\"srvOrderManagerService\" , \"Data\":{\"ACTION\":\"QRYHASORDER\",\"userId\":\""+SysU.USERID+"\"}}";
+		HashMap<String, String> prodMap = new HashMap<String, String>();
+		prodMap.put("JsonData", inmapData);
+		vo.requestDataMap = prodMap;
+		Log.i(TAG, inmapData+"");
 		getDataFromServer(vo, new DataCallback<List<OrderList>>() {
 			@Override
 			public void processData(List<OrderList> paramObject,

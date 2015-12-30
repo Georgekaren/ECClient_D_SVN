@@ -198,7 +198,7 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
 			if (msg.what == Constant.SUCCESS) {
 				if (msg.obj == null) {
 					CommonUtil.showInfoDialog(context, getString(R.string.net_error));
-				} else {
+				} else { 
 					callBack.processData(msg.obj, true);
 				}
 			} else if (msg.what == Constant.NET_FAILED) {

@@ -22,7 +22,7 @@ public class OrderListParser extends BaseParser<List<OrderList>> {
 			JSONObject json = new JSONObject(paramString);
 			String result = json.getString("response");
 			if(result!=null && !result.equals("error")){
-				String orderlist = json.getString("orderlist");
+				String orderlist = json.getString("DATA_INFO");
 				List<OrderList> list = JSON.parseArray(orderlist, OrderList.class);
 				return list;
 			}else{

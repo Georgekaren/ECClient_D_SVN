@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.lianmeng.core.activity.R;
-import com.lianmeng.core.activity.vo.HomeBanner;
+import com.lianmeng.core.activity.vo.HomeBannerVo;
 import com.lianmeng.core.framework.engine.SyncImageLoader;
 import com.lianmeng.core.framework.engine.SyncImageLoader.OnImageLoadListener;
 /**
@@ -21,11 +21,11 @@ import com.lianmeng.core.framework.engine.SyncImageLoader.OnImageLoadListener;
 public class HomeBannerAdapter extends BaseAdapter implements OnImageLoadListener {
 
  	private Context context;
-	private List<HomeBanner> galleryList;
+	private List<HomeBannerVo> galleryList;
  	private SyncImageLoader syncImageLoader;
 	private Drawable[] drawables;
 
-	public HomeBannerAdapter(Context context, List<HomeBanner> arrayList) {
+	public HomeBannerAdapter(Context context, List<HomeBannerVo> arrayList) {
 		this.context = context;
 		this.galleryList = arrayList;
  		syncImageLoader = new SyncImageLoader();
@@ -34,7 +34,7 @@ public class HomeBannerAdapter extends BaseAdapter implements OnImageLoadListene
 		syncImageLoader.setLoadLimit(0, size);
 		//加载图片
 		for (int i = 0; i < size; i++) {
-			syncImageLoader.loadImage(i, arrayList.get(i).getPic(), this);
+			syncImageLoader.loadImage(i, arrayList.get(i).getUrl(), this);
 		}
 	}
 

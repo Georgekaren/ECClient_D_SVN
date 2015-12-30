@@ -10,16 +10,17 @@ public class LoginParser extends BaseParser<UserInfo> {
 
 	@Override
 	public UserInfo parseJSON(String paramString) throws JSONException {
+		UserInfo localUserInfo = new UserInfo();
 		if (super.checkResponse(paramString) != null) {
-			UserInfo localUserInfo = new UserInfo();
-			JSONObject jsonObject = new JSONObject(paramString).getJSONObject("userinfo");
-			String userid = jsonObject.getString("userId");
-			String usersession = jsonObject.getString("usersession");
+			
+			JSONObject jsonObject = new JSONObject(paramString).getJSONObject("USER_INFO");
+			String userid = jsonObject.getString("id");
+			String usersession = jsonObject.getString("name");
 			localUserInfo.userId = userid;
 			localUserInfo.usersession = usersession;
-			return localUserInfo;
+			//return localUserInfo;
 		}
-		return new UserInfo();
+		return localUserInfo;
 	}
 
 }

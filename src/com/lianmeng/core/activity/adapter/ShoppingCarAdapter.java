@@ -1,29 +1,43 @@
 package com.lianmeng.core.activity.adapter;
 
+import java.util.HashMap;
 import java.util.List;
 
+import com.lianmeng.core.activity.ProductDetailActivity;
 import com.lianmeng.core.activity.R;
+import com.lianmeng.core.activity.ShoppingCarActivity;
+import com.lianmeng.core.activity.BaseWapperActivity.DataCallback;
+import com.lianmeng.core.activity.adapter.AddressManageAdapter.OnItemButtonListener;
+import com.lianmeng.core.activity.parser.SuccessParser;
 import com.lianmeng.core.activity.vo.Cart;
 import com.lianmeng.core.activity.vo.CartProduct;
+import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.util.ImageUtil;
 import com.lianmeng.core.framework.util.ImageUtil.ImageCallback;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class ShoppingCarAdapter extends BaseAdapter {
+public class ShoppingCarAdapter extends BaseAdapter  implements OnClickListener {
 	private Context context;
 	private Cart cart;
 	private List<CartProduct> productlist;
 	private CartProduct cartProduct;
-
+	private OnItemButtonListener listener;
+	private int selPosi;
 	
 	public ShoppingCarAdapter() {
 		super();
@@ -43,7 +57,12 @@ public class ShoppingCarAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return position;
+		return productlist.get(position);
+	}
+	
+	public void removeItem(int position) {
+		 productlist.remove(position);
+     	 notifyDataSetChanged();        
 	}
 
 	@Override
@@ -54,11 +73,12 @@ public class ShoppingCarAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		final int fposition=position;
 		View view = new View(context);
 		view = View.inflate(context, R.layout.shopping_car_listitem, null);
 		
 		cartProduct = productlist.get(position);
-	
+		selPosi=position;
 		final ImageView shopcar_item_prodImage_img= (ImageView) view.findViewById(R.id.shopcar_item_prodImage_img);
 		TextView shopcar_item_prodName_text = new TextView(context);//名称
 		shopcar_item_prodName_text = (TextView) view.findViewById(R.id.shopcar_item_prodName_text);
@@ -71,12 +91,23 @@ public class ShoppingCarAdapter extends BaseAdapter {
 		TextView shopcar_item_subtotal_text = new TextView(context);//小计
 		shopcar_item_subtotal_text = (TextView) view.findViewById(R.id.shopcar_item_subtotal_text);
 		EditText shopcar_item_prodCount_edit=(EditText) view.findViewById(R.id.shopcar_item_prodCount_edit);
+		TextView shopcar_item_del_button = new TextView(context);//删除按钮
+		shopcar_item_del_button=(TextView) view.findViewById(R.id.shopcar_item_delete_text);
+		shopcar_item_del_button.setOnClickListener(new View.OnClickListener() {  
+            @Override  
+            public void onClick(View v) { 
+            	if (listener != null) {
+        			listener.onItemClick(v, selPosi);
+        		  
+        		}      
+            }  
+        });  
 		String imageUrl =cartProduct.pic;
 		
 		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(imageUrl));
-		System.out.println(imagePath);
+		//System.out.println(imagePath);
 		shopcar_item_prodImage_img.setTag(imagePath);
-		System.out.println(12345);
+		//System.out.println(12345);
 		Bitmap bitmap = ImageUtil.loadImage(imagePath, imageUrl, new ImageCallback() {
 			
 			@Override
@@ -106,4 +137,15 @@ public class ShoppingCarAdapter extends BaseAdapter {
 		return view;
 	}
 
+	public void setListener(OnItemButtonListener listener) {
+		this.listener = listener;
+	}
+
+	@Override
+	public void onClick(View v) {
+		/*if (listener != null) {
+			listener.onItemClick(v, (Integer) v.getTag());
+		}*/
+	}
+	
 }

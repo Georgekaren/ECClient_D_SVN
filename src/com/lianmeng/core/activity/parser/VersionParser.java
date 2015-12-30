@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.lianmeng.core.activity.vo.Version;
+import com.lianmeng.core.activity.vo.VersionVo;
 
 /**
  * 版本解析器
@@ -14,14 +14,15 @@ import com.lianmeng.core.activity.vo.Version;
  * @author liu
  * 
  */
-public class VersionParser extends BaseParser<Version> {
+public class VersionParser extends BaseParser<VersionVo> {
 
 	@Override
-	public Version parseJSON(String paramString) throws JSONException {
+	public VersionVo parseJSON(String paramString) throws JSONException {
 		if (!TextUtils.isEmpty(checkResponse(paramString))) {
-			JSONObject j = new JSONObject(paramString);
-			String version = j.getString("version");
-			return JSON.parseObject(version, Version.class);
+			JSONObject jobj = new JSONObject(paramString);
+			//JSONObject jobDataInfo=jobj.getJSONObject("DATA_INFO");
+			String version = jobj.getString("DATA_INFO");
+			return JSON.parseObject(version, VersionVo.class);
 		}
 		return null;
 	}

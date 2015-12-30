@@ -14,14 +14,15 @@ public class UserinfoParser extends BaseParser<User> {
 
 	@Override
 	public User parseJSON(String paramString) throws JSONException {
+		User userInfoList=null;
 		if(super.checkResponse(paramString)!=null){
 			Logger.d(TAG, "解析Userinfo数据");
 			JSONObject json = new JSONObject(paramString);
-			String useinfoObj = json.getString("userinfo");
-			User userInfoList = JSON.parseObject(useinfoObj, User.class);
-			return userInfoList;
+			String useinfoObj = json.getString("USER_INFO");
+		    userInfoList = JSON.parseObject(useinfoObj, User.class);
+			//return userInfoList;
 		}
-		return null;
+		return userInfoList;
 	}
 
 }

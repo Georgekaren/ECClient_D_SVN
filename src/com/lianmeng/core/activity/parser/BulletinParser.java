@@ -14,7 +14,7 @@ public class BulletinParser extends BaseParser<List<BulletinVo>> {
 	public List<BulletinVo> parseJSON(String paramString) throws JSONException {
 		if (super.checkResponse(paramString) != null) {
 			JSONObject jsonObject = new JSONObject(paramString);
-			String topic = jsonObject.getString("topic");
+			String topic = jsonObject.getString("DATA_INFO");
 			return JSON.parseArray(topic, BulletinVo.class);
 		}else{
 

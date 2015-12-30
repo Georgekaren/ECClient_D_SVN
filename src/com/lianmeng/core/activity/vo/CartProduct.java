@@ -2,7 +2,7 @@ package com.lianmeng.core.activity.vo;
 
 public class CartProduct {
 	/** ID */
-	public int id;
+	public String id;
 
 	/** 商品名称 */
 	public String name;
@@ -14,7 +14,7 @@ public class CartProduct {
 	public String pic;
 
 	/** 商品数量 */
-	public int prodNum;
+	public double prodNum;
 
 	/** 商品金额小计 */
 	public double subtotal;
@@ -31,7 +31,7 @@ public class CartProduct {
 	public CartProduct() {
 	}
 
-	public CartProduct(int id, String name, double price, String pic, int prodNum, double subtotal, int number,
+	public CartProduct(String id, String name, double price, String pic, double prodNum, double subtotal, int number,
 			int uplimit, boolean isgift) {
 		super();
 		this.id = id;
@@ -45,11 +45,11 @@ public class CartProduct {
 		this.isgift = isgift;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -77,11 +77,11 @@ public class CartProduct {
 		this.pic = pic;
 	}
 
-	public int getProdNum() {
+	public double getProdNum() {
 		return prodNum;
 	}
 
-	public void setProdNum(int prodNum) {
+	public void setProdNum(double prodNum) {
 		this.prodNum = prodNum;
 	}
 

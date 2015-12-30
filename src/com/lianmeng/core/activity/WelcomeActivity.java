@@ -182,7 +182,7 @@ public class WelcomeActivity extends Activity implements Runnable, DownlaodListe
 	public void run() {
 		try {
 			if (NetUtil.hasNetwork(this)) {
-				BaseParser<Version> jsonParser = new VersionParser();
+				BaseParser<Version> jsonParser =null;// new VersionParser();
 				RequestVo vo = new RequestVo(R.string.url_version, this, null, jsonParser);
 				version = (Version) NetUtil.get(vo);
 				if (version != null) {

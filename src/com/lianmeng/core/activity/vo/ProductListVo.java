@@ -8,9 +8,17 @@ public class ProductListVo implements  Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3329730909431080072L;
-	private int id;
+	private String id;
 	
- 	private String name;
+ 	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	private String name;
 	private String pic;
 	private double marketprice;
 	private double price;
@@ -19,7 +27,7 @@ public class ProductListVo implements  Serializable{
 	public ProductListVo() {
  	}
 	
-	public ProductListVo(int id, String name, String pic, double marketprice, double price, int comment_count) {
+	public ProductListVo(String id, String name, String pic, double marketprice, double price, int comment_count) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -29,14 +37,7 @@ public class ProductListVo implements  Serializable{
 		this.comment_count = comment_count;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 	public String getName() {
 		return name;
 	}

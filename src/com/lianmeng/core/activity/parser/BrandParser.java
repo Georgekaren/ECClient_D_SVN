@@ -16,7 +16,7 @@ public class BrandParser extends BaseParser<List<BrandCategory>> {
 	public List<BrandCategory> parseJSON(String paramString) throws JSONException {
 		if(super.checkResponse(paramString)!=null){
 			JSONObject jsonObject = new JSONObject(paramString);
-			String productlist = jsonObject.getString("brand");
+			String productlist = jsonObject.getString("DATA_INFO");
 			return JSON.parseArray(productlist, BrandCategory.class);
 		}else{
 		return null;

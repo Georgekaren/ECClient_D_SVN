@@ -16,6 +16,7 @@ import com.lianmeng.core.activity.vo.InvoiceInfo;
 import com.lianmeng.core.activity.vo.Payment;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.framework.util.SysU;
 
 import android.content.Intent;
 import android.os.Parcelable;
@@ -123,7 +124,12 @@ public class Payment_Center_Activity extends BaseWapperActivity {
 		vo.context = this;
 		vo.requestDataMap = new HashMap<String, String>();
 		vo.requestDataMap.put("sku", "1200001:3|1200004:2");
-		vo.requestUrl = R.string.checkout;
+		
+		String inmapData="{\"ServiceName\":\"srvOrderManagerService\" , \"Data\":{\"ACTION\":\"CHECKBASEORDER\",\"userId\":\""+SysU.USERID+"\"}}";
+		HashMap<String, String> prodMap = new HashMap<String, String>();
+		prodMap.put("JsonData", inmapData);
+		vo.requestDataMap = prodMap;
+		vo.requestUrl = R.string.sysRequestServLet;
 		vo.jsonParser = new PaymentCenterParser();
 		getDataFromServer(vo, new DataCallback<Map<String,Object>>() {
 			@Override

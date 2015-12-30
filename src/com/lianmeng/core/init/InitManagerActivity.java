@@ -1,6 +1,7 @@
 package com.lianmeng.core.init;
 
 import java.io.File;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
@@ -24,6 +25,7 @@ import com.lianmeng.core.activity.parser.BaseParser;
 import com.lianmeng.core.activity.parser.VersionParser;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.activity.vo.Version;
+import com.lianmeng.core.activity.vo.VersionVo;
 import com.lianmeng.core.framework.application.ECApplication;
 import com.lianmeng.core.framework.engine.DownLoadTask;
 import com.lianmeng.core.framework.engine.DownLoadTask.DownlaodListener;
@@ -41,7 +43,7 @@ public class InitManagerActivity extends Activity implements Runnable, DownlaodL
 		private static final int DOWN_ERROR = 12;
 
 		/** 从服务器获取的版本信息 */
-		private Version version;
+		private VersionVo version;
 
 		/** 是否设置进度条最大值 */
 		private boolean flag = true;
@@ -67,20 +69,20 @@ public class InitManagerActivity extends Activity implements Runnable, DownlaodL
 					gotoHome();
 					break;
 				case SHOW_UPDATE_DIALOG:
-					Logger.d(TAG, "更新版本提示");
+					Logger.d(TAG, getString(R.string.initMsgVersionMsg));
 
-					new Builder(InitManagerActivity.this).setTitle("升级提醒").setMessage("亲，有新的版本赶快升级!").setCancelable(false)
-							.setPositiveButton("是", new OnClickListener() {
+					new Builder(InitManagerActivity.this).setTitle(getString(R.string.initMsgUpgradeReMindMsg)).setMessage(getString(R.string.initMsgUpgradeNewMsg)).setCancelable(false)
+							.setPositiveButton(getString(R.string.pubReYes), new OnClickListener() {
 
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
 									downApk();
 								}
-							}).setNegativeButton("否", new OnClickListener() {
+							}).setNegativeButton(getString(R.string.pubReNo), new OnClickListener() {
 
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
-									Logger.d(TAG, "不更新直接进入主界面");
+									Logger.d(TAG, getString(R.string.initMsgSkipUpgradeMsg));
 									gotoHome();
 								}
 							}).show();
@@ -111,8 +113,8 @@ public class InitManagerActivity extends Activity implements Runnable, DownlaodL
 		/** 从服务器下载新的Apk */
 		private void downApk() {
 			initProgressDialog();
-			file = new File(ECApplication.getCacheDirPath(), "redbaby.apk");
-			downLoadTask = new DownLoadTask(version.getUrl(), file.getAbsolutePath(), 5);
+			file = new File(ECApplication.getCacheDirPath(), getString(R.string.initMsgUpgradeApkName));
+			downLoadTask = new DownLoadTask(version.getUpdatePath(), file.getAbsolutePath(), 5);
 			downLoadTask.setListener(this);
 			ThreadPoolManager.getInstance().addTask(downLoadTask);
 
@@ -177,14 +179,16 @@ public class InitManagerActivity extends Activity implements Runnable, DownlaodL
 		public void run() {
 			try {
 				if (NetUtil.hasNetwork(this)) {
-					BaseParser<Version> jsonParser = new VersionParser();
-					RequestVo vo = new RequestVo(R.string.url_version, this, null, jsonParser);
-					version = (Version) NetUtil.get(vo);
-					if (version != null) {
-						String v = version.getVersion();
+					BaseParser<VersionVo> jsonParser = new VersionParser();
 
-						Logger.d(TAG, "获取当前服务器版本号为 ：" + v);
-						if (clientVersion.equals(v)) {
+					String versionCondition="{'ServiceName':'versionManagerService' , 'Data':{}}";
+					HashMap<String,String> inmap=new HashMap<String,String>();
+					inmap.put(getString(R.string.sysRequestGetDataFlag), versionCondition);
+					RequestVo vo = new RequestVo(R.string.sysRequestServLet, this, inmap, jsonParser);
+					version = (VersionVo) NetUtil.getNew(vo);
+					if (version != null) {
+						Logger.d(TAG, getString(R.string.initMsgServiceVersionMsg) + version.getNo());
+						if (clientVersion.equals(version.getNo())) {
 							gotoHome();
 						} else {
 							Message.obtain(handler, SHOW_UPDATE_DIALOG).sendToTarget();

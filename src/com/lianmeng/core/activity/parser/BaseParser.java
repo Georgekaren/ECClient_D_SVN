@@ -3,6 +3,8 @@ package com.lianmeng.core.activity.parser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.lianmeng.core.framework.util.SysU;
+
 public abstract class BaseParser<T> {
 
 	public abstract T parseJSON(String paramString) throws JSONException;
@@ -17,7 +19,7 @@ public abstract class BaseParser<T> {
 			return null;
 		} else {
 			JSONObject jsonObject = new JSONObject(paramString);
-			String result = jsonObject.getString("response");
+			String result = jsonObject.getString(SysU.RESPONSE_CODE);
 			if (result != null && !result.equals("error")) {
 				return result;
 			} else {

@@ -36,21 +36,22 @@ public class HotproductActivity extends BaseWapperActivity {
 	@Override
 	protected void loadViewLayout() {
 		setContentView(R.layout.prom_bulletin_activity);
-		//setContentView(R.layout.product_list_activity);
 		List = new ArrayList<ProductListVo>();
-		setTitle("热卖单品");
+		setTitle(getString(R.string.hotProdTitleTitleNameMsg));
 		
 	}
 	//执行逻辑
 	@Override
 	protected void processLogic() {
 		RequestVo reqVo = new RequestVo();
-		reqVo.requestUrl = R.string.url_hotproduct;
+		reqVo.requestUrl = R.string.sysRequestServLet;
 		reqVo.context = context;
 		HashMap<String, String> requestDataMap = new HashMap<String, String>();
 		requestDataMap.put("page", "");
 		requestDataMap.put("pageNum", "");
-		//requestDataMap.put("orderby", "sale_down");
+		//1003 代表食品
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASECONTENTPROD\",\"type\":\"1003\"}}";
+		requestDataMap.put("JsonData", inmapData);
 		reqVo.requestDataMap = requestDataMap;
 		
 		reqVo.jsonParser = new ProductListParser();

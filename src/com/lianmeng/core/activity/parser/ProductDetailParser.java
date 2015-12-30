@@ -1,6 +1,5 @@
 package com.lianmeng.core.activity.parser;
 
-import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +12,7 @@ public class ProductDetailParser extends BaseParser<ProductDetail> {
 	public ProductDetail parseJSON(String paramString) throws JSONException {
 		if(super.checkResponse(paramString)!=null){
 			JSONObject jsonObject = new JSONObject(paramString);
-			String product = jsonObject.getString("product");
+			String product = jsonObject.getString("DATA_INFO");
 			ProductDetail productDetail = JSON.parseObject(product,ProductDetail.class);
 			return productDetail;
 		}

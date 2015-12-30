@@ -7,6 +7,7 @@ import java.util.List;
 import com.lianmeng.core.framework.service.ECServiceManager;
 import com.lianmeng.core.framework.service.IECManager;
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.framework.util.SysU;
 
 import android.app.Activity;
 import android.app.Application;
@@ -43,7 +44,7 @@ public class ECApplication extends Application {
 	private void initCacheDirPath() {
 		File f;
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			f = new File(Environment.getExternalStorageDirectory() + "/.redbaby/");
+			f = new File(Environment.getExternalStorageDirectory() + SysU.SDCARD_CACHE_FILE_PATH_SUB);
 			if (!f.exists()) {
 				f.mkdir();
 			}

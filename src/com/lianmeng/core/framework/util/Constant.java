@@ -81,7 +81,7 @@ public class Constant {
 	public static int selectedHome;
 	public static String selectedNum;
 	public static String FLAG;
-	public static String LIMIT_BUY = "limitbuy";
+	public static String LIMIT_BUY = "LimitBuyVo";
 	public static String NEW_PRODUCT = "newproduct";
 	public static String BRAND = "brand";
 	public static String CATEGORY = "category";

@@ -9,13 +9,13 @@ package com.lianmeng.core.activity.vo;
  */
 public class Addup {
 	/** 商品数量总计 */
-	public int total_count;
+	public double total_count;
 
 	/** 商品金额总计 */
 	public double total_price;
 
 	/** 商品积分总计 */
-	public int total_point;
+	public double total_point;
 
 	public Addup() {
  	}
@@ -30,11 +30,11 @@ public class Addup {
 
 
 
-	public int getTotal_count() {
+	public double getTotal_count() {
 		return total_count;
 	}
 
-	public void setTotal_count(int total_count) {
+	public void setTotal_count(double total_count) {
 		this.total_count = total_count;
 	}
 
@@ -46,11 +46,11 @@ public class Addup {
 		this.total_price = total_price;
 	}
 
-	public int getTotal_point() {
+	public double getTotal_point() {
 		return total_point;
 	}
 
-	public void setTotal_point(int total_point) {
+	public void setTotal_point(double total_point) {
 		this.total_point = total_point;
 	}
 	

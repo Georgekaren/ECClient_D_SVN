@@ -63,9 +63,9 @@ public class ProductDetailActivity extends BaseWapperActivity {
 				@Override
 				public void processData(Boolean paramObject, boolean paramBoolean) {
 					if (paramObject!= null && paramObject) {
-						Toast.makeText(ProductDetailActivity.this, "加入收藏夹成功", Toast.LENGTH_LONG).show();
+						Toast.makeText(ProductDetailActivity.this, getString(R.string.prodDetailMsgOrderDetailFavoriteSucceedNameMsg), Toast.LENGTH_LONG).show();
 					} else {
-						Toast.makeText(ProductDetailActivity.this, "加入收藏夹失败", Toast.LENGTH_LONG).show();
+						Toast.makeText(ProductDetailActivity.this, getString(R.string.prodDetailMsgOrderDetailFavoriteFaildNameMsg), Toast.LENGTH_LONG).show();
 					}
 				}
 			});
@@ -91,7 +91,7 @@ public class ProductDetailActivity extends BaseWapperActivity {
 	@Override
 	protected void loadViewLayout() {
 		setContentView(R.layout.product_detail_activity);
-		setTitle("商品详细");
+		setTitle(getString(R.string.prodDetailTitleOrderDetailNameMsg));
 	}
 
 	@Override
@@ -101,19 +101,21 @@ public class ProductDetailActivity extends BaseWapperActivity {
 
 	@Override
 	protected void processLogic() {
-		int id  = getIntent().getIntExtra("id", -1);
-		if (id == -1) {
+		String selProdId  = getIntent().getStringExtra("id");
+		if (selProdId==null||"".equals(selProdId)) {
 			
-			Logger.d(TAG, "id is null");
+			Logger.d(TAG, "selProdId is null");
 			finish();
 			return ;
 		}
 		
 		RequestVo requestVo = new RequestVo();
-		requestVo.requestUrl = R.string.product;
+		requestVo.requestUrl =R.string.sysRequestServLet;// R.string.product;
 		requestVo.context = context;
 		HashMap<String, String> requestDataMap = new HashMap<String, String>();
-		requestDataMap.put("id", id + "");
+		//requestDataMap.put("id", id + "");
+		String inMapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYPRODDETAIL\",\"id\":\""+selProdId+"\"}}";
+		requestDataMap.put("JsonData", inMapData);
 		requestVo.requestDataMap = requestDataMap ;
 		requestVo.jsonParser = new ProductDetailParser();
 		getDataFromServer(requestVo, new DataCallback<ProductDetail>() {
@@ -154,21 +156,23 @@ public class ProductDetailActivity extends BaseWapperActivity {
 				HashMap<String, String> requestDataMa = new HashMap<String, String>();
 				requestDataMa.put("id", currentProduct.getId() + "");
 				requestDataMa.put("count", prodNumValue.getText().toString());
-				RequestVo reqVo = new RequestVo(R.string.url_cartdatasession, context, requestDataMa , new SuccessParser());
+				String inMap="{\"ServiceName\":\"srvOrderManagerService\" , \"Data\":{\"ACTION\":\"ADDORDER\",\"prodId\":\""+currentProduct.getId()+"\",\"userId\":\"1\",\"prodNum\":\""+prodNumValue.getText().toString()+"\",\"totalPrice\":\"13\"}}";
+				requestDataMa.put("JsonData", inMap);
+				RequestVo reqVo = new RequestVo(R.string.sysRequestServLet, context, requestDataMa , new SuccessParser());
 				getDataFromServer(reqVo , new DataCallback<Boolean>() {
 
 					@Override
 					public void processData(Boolean paramObject, boolean paramBoolean) {
  						if (paramObject != null && paramObject) {
  							AlertDialog.Builder builder = new Builder(ProductDetailActivity.this);
- 							builder.setTitle("添加进购物车成功");
- 							builder.setPositiveButton("继续购物", new DialogInterface.OnClickListener() {
+ 							builder.setTitle(getString(R.string.prodDetailMsgOrderDetailFavoriteSucceedNameMsg));
+ 							builder.setPositiveButton(getString(R.string.prodDetailTitleContinueShopingMsg), new DialogInterface.OnClickListener() {
  								@Override
  								public void onClick(DialogInterface dialog, int which) {
  									finish();
  								}
  							});
- 							builder.setNegativeButton("进入购物车", new DialogInterface.OnClickListener() {
+ 							builder.setNegativeButton(getString(R.string.prodDetailTitleInShopingCartMsg), new DialogInterface.OnClickListener() {
  								@Override
  								public void onClick(DialogInterface dialog, int which) {
  									Intent intent = new Intent(ProductDetailActivity.this, ShoppingCarActivity.class);
@@ -179,7 +183,7 @@ public class ProductDetailActivity extends BaseWapperActivity {
 
  							builder.create().show();
  						} else {
- 							Toast.makeText(ProductDetailActivity.this, "加入购物车失败", Toast.LENGTH_LONG).show();
+ 							Toast.makeText(ProductDetailActivity.this, getString(R.string.prodDetailMsgOrderDetailFavoriteFaildNameMsg), Toast.LENGTH_LONG).show();
  						}
 					}
 				});
@@ -194,7 +198,7 @@ public class ProductDetailActivity extends BaseWapperActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent();
 				intent.setAction(Intent.ACTION_CALL);
-				intent.setData(Uri.parse("tel:01088499999"));
+				//intent.setData(Uri.parse("tel:01088499999"));
 				startActivity(intent);
 			}
 		});

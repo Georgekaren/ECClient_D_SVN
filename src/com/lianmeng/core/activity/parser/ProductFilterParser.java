@@ -15,7 +15,7 @@ public class ProductFilterParser extends BaseParser<List<FilterCategory>> {
 			throws JSONException {
 		if (super.checkResponse(paramString) != null) {
 			JSONObject jsonObject = new JSONObject(paramString);
-			String filter = jsonObject.getString("list_filter");
+			String filter = jsonObject.getString("PUBS_FINALS");
 			return JSON.parseArray(filter, FilterCategory.class);
 		}else{
 

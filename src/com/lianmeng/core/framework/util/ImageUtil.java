@@ -16,7 +16,7 @@ import android.os.Message;
 
 public class ImageUtil {
 	private static final String SDCARD_CACHE_IMG_PATH = Environment.getExternalStorageDirectory().getPath()
-			+ "/redbaby/images/";
+			+SysU.SDCARD_CACHE_IMG_PATH_SUB;
 	protected static final String TAG = "ImageUtil";
 
 	/**

@@ -18,7 +18,7 @@ public class DivideCategoryList {
 	public List<CategoryVo> getOneLevel(){
 		List<CategoryVo>  voList = new ArrayList<CategoryVo>();
 		for(CategoryVo vo : totalList){
-			if(vo.getParent_id().equals("0")){
+			if(vo.getParent_id()==null||"".equals(vo.getParent_id())||vo.getParent_id().equals("0")){
 				voList.add(vo);
 			}
 		}
@@ -27,7 +27,7 @@ public class DivideCategoryList {
 	public List<CategoryVo> getNextLevel(String listId){
 		List<CategoryVo> voList = new ArrayList<CategoryVo>();
 		for(CategoryVo vo : totalList){
-			if(vo.getParent_id().equals(listId)){
+			if(vo.getParent_id()!=null&&vo.getParent_id().equals(listId)){
 				voList.add(vo);
 			}
 		}

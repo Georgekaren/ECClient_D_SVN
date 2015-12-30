@@ -14,7 +14,7 @@ public class SearchParser extends BaseParser<List<ProductListVo>> {
 	public List<ProductListVo> parseJSON(String paramString) throws JSONException {
 		if(super.checkResponse(paramString)!=null){
 			JSONObject jsonObject = new JSONObject(paramString);
-			String search_keywords = jsonObject.getString("productlist");
+			String search_keywords = jsonObject.getString("DATA_INFO");
 			List<ProductListVo> products = JSON.parseArray(search_keywords, ProductListVo.class);
 			return products;
 		}

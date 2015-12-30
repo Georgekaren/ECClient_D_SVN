@@ -44,7 +44,7 @@ public class SearchAdapter extends BaseAdapter {
 			TextView tv = (TextView) View.inflate(context, R.layout.search_item, null);
 			tv.setTextSize(35);
 			tv.setTextColor(Color.RED);
-			tv.setText("热门搜索");
+			tv.setText(this.context.getString(R.string.searchProdTitleHotButtonNameMsg));
 			return tv;		
 		}
 		TextView tv_content =  (TextView) View.inflate(context, R.layout.search_item, null);

@@ -1,5 +1,7 @@
 package com.lianmeng.core.activity;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class SearchProductListActivity extends BaseWapperActivity implements OnI
 			public void processData(List<ProductListVo> paramObject, boolean paramBoolean) {
 				adapter = new ProductAdapter(context, productList, paramObject);
 				productList.setAdapter(adapter);
-				setTitle("搜索结果 (" + paramObject.size() + "条)");
+				setTitle(getString(R.string.searchProdTitleLeftNameMsg)+ paramObject.size() + getString(R.string.searchProdTitleRightNameMsg));
 			}
 		};
 
@@ -54,22 +56,25 @@ public class SearchProductListActivity extends BaseWapperActivity implements OnI
 
 			break;
 		case R.id.textRankSale:
-			map.put("orderby", "sale_down");
-			vo.requestDataMap = map;
+			checkInMapData("sale_down","");
+			//map.put("orderby", "sale_down");
+			//vo.requestDataMap = map;
 			super.getDataFromServer(vo, callback);
 			showProgressDialog();
 			break;
 		case R.id.textRankPrice:
 			if (priceOrder == "price_up") {
-				map.put("orderby", priceOrder);
-				vo.requestDataMap = map;
+				checkInMapData(priceOrder,"");
+				//map.put("orderby", priceOrder);
+				//vo.requestDataMap = map;
 				priceOrder = "price_down";
 				super.getDataFromServer(vo, callback);
 				showProgressDialog();
 
 			} else {
-				map.put("orderby", priceOrder);
-				vo.requestDataMap = map;
+				checkInMapData(priceOrder,"");
+				//map.put("orderby", priceOrder);
+				//vo.requestDataMap = map;
 				priceOrder = "price_up";
 				super.getDataFromServer(vo, callback);
 				showProgressDialog();
@@ -77,15 +82,17 @@ public class SearchProductListActivity extends BaseWapperActivity implements OnI
 			}
 			break;
 		case R.id.textRankGood:
-			map.put("orderby", "comment_down");
-			vo.requestDataMap = map;
+			checkInMapData("comment_down","");
+			//map.put("orderby", "comment_down");
+			//vo.requestDataMap = map;
 			super.getDataFromServer(vo, callback);
 			showProgressDialog();
 
 			break;
 		case R.id.textRankTime:
-			map.put("orderby", "shelves_down");
-			vo.requestDataMap = map;
+			//map.put("orderby", "shelves_down");
+			checkInMapData("shelves_down","");
+			//vo.requestDataMap = map;
 			super.getDataFromServer(vo, callback);
 			showProgressDialog();
 
@@ -111,21 +118,45 @@ public class SearchProductListActivity extends BaseWapperActivity implements OnI
 
 	@Override
 	protected void processLogic() {
-		String keyWord = getIntent().getStringExtra("keyWord");
+		
 		vo = new RequestVo();
 		vo.context = SearchProductListActivity.this;
-		map = new HashMap<String, String>();
-		map.put("keyword", keyWord);
-		map.put("page", 1 + "");
-		map.put("pageNum", 10 + "");
-		map.put("orderby", "sale_down");
-		vo.requestDataMap = map;
-		vo.requestUrl = R.string.search;
+		String orderby="sale_down";
+		String brandid="";
+		checkInMapData(orderby,brandid);
+		vo.requestUrl = R.string.sysRequestServLet;
+		
 		vo.jsonParser = new SearchParser();
 		super.getDataFromServer(vo, callback);
 
 	}
 
+	public void checkInMapData(String orderby,String brandid){
+		String keyWord = getIntent().getStringExtra("keyWord");
+		map = new HashMap<String, String>();
+		
+		map.put("keyword", keyWord);
+		map.put("page", 1 + "");
+		map.put("pageNum", 10 + "");
+		map.put("orderby", orderby);
+		try {
+			keyWord=URLEncoder.encode(keyWord, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+
+		}
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASECONTENTPROD\",\"name\":\""+keyWord+"\",\"type\":\"\"";
+		if(orderby!=null){
+			inmapData=inmapData+",\"ordertype\":\""+orderby+"\"";
+			//,\"brandid\":\"1002001\"
+		}
+		if(brandid!=null){
+			map.put("brandid", brandid);
+			inmapData=inmapData+",\"brandid\":\""+brandid+"\"";
+		}
+		inmapData=inmapData+"}}";
+		map.put("JsonData", inmapData);
+		vo.requestDataMap = map;
+	}
 	@Override
 	protected void setListener() {
 		textRankSale.setOnClickListener(this);

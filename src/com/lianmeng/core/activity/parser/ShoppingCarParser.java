@@ -5,9 +5,10 @@ import org.json.JSONObject;
 
 import com.alibaba.fastjson.JSON;
 import com.lianmeng.core.activity.vo.Cart;
+import com.lianmeng.core.framework.util.Logger;
 
 public class ShoppingCarParser extends BaseParser<Cart> {
-
+	protected static final String TAG = "ShoppingCarParser";
 	@Override
 	public Cart parseJSON(String paramString) throws JSONException {
 		if(checkResponse(paramString)!=null){
@@ -15,8 +16,8 @@ public class ShoppingCarParser extends BaseParser<Cart> {
 			
 		
 			JSONObject jsonObject = new JSONObject(paramString);
-
-			String cartstr = jsonObject.getString("cart");
+			Logger.d(TAG, paramString);
+			String cartstr = jsonObject.getString("DATA_INFO");
 			cart =JSON.parseObject(cartstr, Cart.class);
 			
 			return cart;

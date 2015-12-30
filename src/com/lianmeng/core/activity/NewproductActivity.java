@@ -38,19 +38,20 @@ public class NewproductActivity extends BaseWapperActivity {
 		setContentView(R.layout.prom_bulletin_activity);
 		//setContentView(R.layout.product_list_activity);
 		List = new ArrayList<ProductListVo>();
-		setTitle("新品上架");
+		setTitle(getString(R.string.newProdTitleTitleNameMsg));
 		
 	}
 	//执行逻辑
 	@Override
 	protected void processLogic() {
 		RequestVo reqVo = new RequestVo();
-		reqVo.requestUrl = R.string.url_newproduct;
+		reqVo.requestUrl = R.string.sysRequestServLet;
 		reqVo.context = context;
 		HashMap<String, String> requestDataMap = new HashMap<String, String>();
 		requestDataMap.put("page", "");
 		requestDataMap.put("pageNum", "");
-		//requestDataMap.put("orderby", "sale_down");
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASECONTENTPROD\",\"prodNew\":\"true\",\"type\":\"\"}}";
+		requestDataMap.put("JsonData", inmapData);
 		reqVo.requestDataMap = requestDataMap;
 		
 		reqVo.jsonParser = new ProductListParser();

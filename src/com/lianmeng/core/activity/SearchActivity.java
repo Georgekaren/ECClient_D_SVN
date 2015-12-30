@@ -1,5 +1,7 @@
 package com.lianmeng.core.activity;
 
+import java.util.HashMap;
+
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,7 +60,7 @@ public class SearchActivity extends BaseWapperActivity {
 	protected void onHeadRightButton(View v) {
 		String keyWord = keyWordEdit.getText().toString();
 		if(keyWord==null||"".equals(keyWord)){
-			CommonUtil.showInfoDialog(SearchActivity.this, "请输入关键字");
+			CommonUtil.showInfoDialog(SearchActivity.this, getString(R.string.searchProdMsgInputHiteNameMsg));
 			return;
 		}
 		Intent intent = new Intent(SearchActivity.this,SearchProductListActivity.class);
@@ -78,8 +80,8 @@ public class SearchActivity extends BaseWapperActivity {
 	protected void loadViewLayout() {
 		setContentView(R.layout.search_activity);
 		setHeadLeftVisibility(View.INVISIBLE);
-		setTitle("搜索");
-		setHeadRightText("搜索");
+		setTitle(getString(R.string.searchProdTitleButtonNameMsg));
+		setHeadRightText(getString(R.string.searchProdTitleButtonNameMsg));
 		setHeadRightVisibility(View.VISIBLE);
 		selectedBottomTab(Constant.SEARCH);
 	}
@@ -90,7 +92,12 @@ public class SearchActivity extends BaseWapperActivity {
 		RequestVo vo = new RequestVo();
 		vo.context = SearchActivity.this;
 		vo.jsonParser = new SearchRecommondParser();
-		vo.requestUrl = R.string.searchRecommend;
+		vo.requestUrl = R.string.sysRequestServLet;
+		HashMap<String, String> prodMap = new HashMap<String, String>();
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYPRODFINALSLIST\",\"finalkeyword\":\"SUBBRAND\"}}";
+		prodMap.put("JsonData", inmapData);
+		vo.requestDataMap = prodMap;
+		
 		super.getDataFromServer(vo, new DataCallback<String []>() {
 
 			@Override

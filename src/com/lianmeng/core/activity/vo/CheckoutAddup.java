@@ -8,13 +8,13 @@ package com.lianmeng.core.activity.vo;
 public class CheckoutAddup {
 
 	/** 商品数量总计 */
-	private int total_count;
+	private double total_count;
 
 	/** 商品金额总计 */
 	private double total_price;
 
 	/** 商品积分总计 */
-	private int total_point;
+	private double total_point;
 
 	/** 运费 */
 	private double freight;
@@ -34,11 +34,11 @@ public class CheckoutAddup {
 		this.prom_cut = prom_cut;
 	}
 
-	public int getTotal_count() {
+	public double getTotal_count() {
 		return total_count;
 	}
 
-	public void setTotal_count(int total_count) {
+	public void setTotal_count(double total_count) {
 		this.total_count = total_count;
 	}
 
@@ -50,11 +50,11 @@ public class CheckoutAddup {
 		this.total_price = total_price;
 	}
 
-	public int getTotal_point() {
+	public double getTotal_point() {
 		return total_point;
 	}
 
-	public void setTotal_point(int total_point) {
+	public void setTotal_point(double total_point) {
 		this.total_point = total_point;
 	}
 

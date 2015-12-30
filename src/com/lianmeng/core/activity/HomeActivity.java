@@ -1,6 +1,7 @@
 package com.lianmeng.core.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.Intent;
@@ -20,7 +21,7 @@ import com.lianmeng.core.activity.R;
 import com.lianmeng.core.activity.adapter.HomeAdapter;
 import com.lianmeng.core.activity.adapter.HomeBannerAdapter;
 import com.lianmeng.core.activity.parser.HomeBannerParser;
-import com.lianmeng.core.activity.vo.HomeBanner;
+import com.lianmeng.core.activity.vo.HomeBannerVo;
 import com.lianmeng.core.activity.vo.HomeCategory;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.util.Constant;
@@ -33,10 +34,12 @@ import com.lianmeng.core.framework.util.Logger;
  * @author liu
  *
  */
+@SuppressWarnings("deprecation")
 public class HomeActivity extends BaseWapperActivity implements OnItemClickListener, OnItemSelectedListener {
 
 	private static final String TAG = "HomeActivity";
 	private ListView mCategoryListView;
+	
 	private Gallery mGallery;
 	private List<ImageView> mSlideViews;
 	private TextView searchEdit;
@@ -50,7 +53,7 @@ public class HomeActivity extends BaseWapperActivity implements OnItemClickListe
 				return ;
 			mGallery.setSelection(mGallery.getSelectedItemPosition() + 1);
  			handler.postDelayed(this, 4000);
- 			Logger.d(TAG, "下一张");
+ 			Logger.d(TAG, getString(R.string.homeMsgNextPictureMsg));
 		}
 	};
 	
@@ -62,7 +65,7 @@ public class HomeActivity extends BaseWapperActivity implements OnItemClickListe
 		case R.id.home_searchok: //搜索确定按钮
 			String words = searchEdit.getText().toString();
 			if (TextUtils.isEmpty(words)) {
-				Toast.makeText(this, "请输入关键词", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, getString(R.string.homeMsgNoInputMsg), Toast.LENGTH_LONG).show();
 				return ;
 			}
 			Intent Intent = new Intent(this, SearchProductListActivity.class);
@@ -108,16 +111,18 @@ public class HomeActivity extends BaseWapperActivity implements OnItemClickListe
 	@Override
 	protected void processLogic() {
 		List<HomeCategory> categroy = new ArrayList<HomeCategory>();
-		categroy.add(new HomeCategory(R.drawable.home_classify_01, "限时抢购"));
-		categroy.add(new HomeCategory(R.drawable.home_classify_02, "促销快报"));
-		categroy.add(new HomeCategory(R.drawable.home_classify_03, "新品上架"));
-		categroy.add(new HomeCategory(R.drawable.home_classify_04, "热卖单品"));
-		categroy.add(new HomeCategory(R.drawable.home_classify_05, "推荐品牌"));
+		categroy.add(new HomeCategory(R.drawable.home_classify_01, getString(R.string.homeMsgClass01Msg)));
+		categroy.add(new HomeCategory(R.drawable.home_classify_02, getString(R.string.homeMsgClass02Msg)));
+		categroy.add(new HomeCategory(R.drawable.home_classify_03, getString(R.string.homeMsgClass03Msg)));
+		categroy.add(new HomeCategory(R.drawable.home_classify_04, getString(R.string.homeMsgClass04Msg)));
+		categroy.add(new HomeCategory(R.drawable.home_classify_05, getString(R.string.homeMsgClass05Msg)));
 		mCategoryListView.setAdapter(new HomeAdapter(this, categroy));
-		RequestVo reqVo = new RequestVo(R.string.url_home, this, null, new HomeBannerParser());
-		getDataFromServer(reqVo, new DataCallback<List<HomeBanner>>() {
+		HashMap<String,String> inMap=new HashMap<String,String>();
+		inMap.put("JsonData", "{\"ServiceName\":\"homeManagerService\" , \"Data\":{}}");
+		RequestVo reqVo = new RequestVo(R.string.sysRequestServLet, this, inMap, new HomeBannerParser());
+		getDataFromServer(reqVo, new DataCallback<List<HomeBannerVo>>() {
 			@Override
-			public void processData(List<HomeBanner> paramObject, boolean paramBoolean) {
+			public void processData(List<HomeBannerVo> paramObject, boolean paramBoolean) {
 				HomeBannerAdapter adapter = new HomeBannerAdapter(HomeActivity.this, paramObject);
 				mGallery.setAdapter(adapter);
 
@@ -137,19 +142,19 @@ public class HomeActivity extends BaseWapperActivity implements OnItemClickListe
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		switch (position) {
-		case 0://限时抢购
+		case 0://水果
 			startActivity(new Intent(this,LimitbuyActivity.class));
 			break;
-		case 1://促销快报
+		case 1://日用品
 			startActivity(new Intent(this, BulletinActivity.class));
 			break;
-		case 2://新品上架
+		case 2://饮料
 			startActivity(new Intent(this,NewproductActivity.class));
 			break;
-		case 3://热卖单品
+		case 3://食品
 			startActivity(new Intent(this,HotproductActivity.class));
 			break;
-		case 4://推荐品牌
+		case 4://文具
 			startActivity(new Intent(this,BrandActivity.class));
 			break;
 		}

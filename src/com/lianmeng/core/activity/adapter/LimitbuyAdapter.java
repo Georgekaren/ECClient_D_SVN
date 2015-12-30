@@ -14,11 +14,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lianmeng.core.activity.R;
-import com.lianmeng.core.activity.vo.Limitbuy;
+import com.lianmeng.core.activity.vo.LimitBuyVo;
 
-public class LimitbuyAdapter extends ImageAsyncLoaderAdpter<Limitbuy> {
+public class LimitbuyAdapter extends ImageAsyncLoaderAdpter<LimitBuyVo> {
 	private static final String TAG = "LimitbuyAdapter";
-	private List<Limitbuy> list;
+	private List<LimitBuyVo> list;
  	private Context context;
  	private Drawable[] drawables;
  	private boolean isPlay;
@@ -34,7 +34,7 @@ public class LimitbuyAdapter extends ImageAsyncLoaderAdpter<Limitbuy> {
 	};
  	private Handler handler = new Handler();
 	private SimpleDateFormat simpleDateFormat;
-	public LimitbuyAdapter(List<Limitbuy> list, ListView listView, Context context) {
+	public LimitbuyAdapter(List<LimitBuyVo> list, ListView listView, Context context) {
 		super(context, listView, list);
 		this.list = list;
  		this.context = context;
@@ -73,10 +73,10 @@ public class LimitbuyAdapter extends ImageAsyncLoaderAdpter<Limitbuy> {
 		}
 
 		holderView.textClothesName.setText(list.get(position).getName() + "");
-		holderView.textClothesPrice.setText("￥" + String.valueOf(list.get(position).getLimitprice() + ""));
-		holderView.textMarketPrice.setText("原价：￥" + String.valueOf(list.get(position).getPrice()));
+		holderView.textClothesPrice.setText(this.context.getString(R.string.limitProdListUnitNameMsg) + String.valueOf(list.get(position).getLimitprice() + ""));
+		holderView.textMarketPrice.setText(this.context.getString(R.string.limitProdListOldPriceNameMsg)+this.context.getString(R.string.limitProdListUnitNameMsg) + String.valueOf(list.get(position).getPrice()));
  		// 定时器
-		Limitbuy item = getItem(position);
+		LimitBuyVo item = getItem(position);
 		long v = item.getLefttime() - System.currentTimeMillis();
 		Date date = new Date(v);
 		holderView.textProductCommentNum.setText(simpleDateFormat.format(date));

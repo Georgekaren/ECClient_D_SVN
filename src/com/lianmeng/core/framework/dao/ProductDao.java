@@ -53,12 +53,12 @@ public class ProductDao extends BaseDao {
 		});
 	}
 
-	public Boolean findById(final int id) {
+	public Boolean findById(final String id) {
 		return callBack(TYPE_READ, new DaoCallBack<Boolean>() {
 
 			@Override
 			public Boolean invoke(SQLiteDatabase conn) {
-				cursor = conn.query(TABLE, null, " id = ?", new String[] { Integer.toString(id) }, null, null, null);
+				cursor = conn.query(TABLE, null, " id = ?", new String[] {id }, null, null, null);
 				return cursor.moveToFirst();
 			}
 		});
@@ -95,7 +95,7 @@ public class ProductDao extends BaseDao {
 	}
 
 	private void fillProdcutHistory(Cursor cursor, ProdcutHistory history) {
-		history.setId(cursor.getInt(cursor.getColumnIndex("id")));
+		history.setId(cursor.getString(cursor.getColumnIndex("id")));
 		history.setName(cursor.getString(cursor.getColumnIndex("name")));
 		history.setPic(cursor.getString(cursor.getColumnIndex("pic")));
 		history.setMarketprice(cursor.getDouble(cursor.getColumnIndex("marketprice")));

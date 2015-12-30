@@ -1,12 +1,11 @@
 package com.lianmeng.core.activity.vo;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class ProductDetail {
 	
 	/** ID */
-	private int id;
+	private String id;
 
 	/** 商品名称 */
 	private String name;
@@ -50,7 +49,7 @@ public class ProductDetail {
 	public ProductDetail() {
 	}
 	
-	public ProductDetail(int id, String name, double marketprice, double price, double limitPrice, long leftTime,
+	public ProductDetail(String id, String name, double marketprice, double price, double limitPrice, long leftTime,
 			int comment_count, String score, String available, int buyLimit, List<String> product_prom,
 			String inventory_area, List<String> pic, List<String> bigPic) {
 		super();
@@ -72,11 +71,11 @@ public class ProductDetail {
 
 
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

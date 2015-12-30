@@ -17,7 +17,7 @@ public class CategoryParser extends BaseParser<List<CategoryVo>> {
 	@Override
 	public List<CategoryVo> parseJSON(String paramString) throws JSONException {
 		JSONObject obj = new JSONObject(paramString);
-		String str = obj.getString("category");
+		String str = obj.getString("DATA_INFO");
 		return JSON.parseArray(str, CategoryVo.class);
 	}
 

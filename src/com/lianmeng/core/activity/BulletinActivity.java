@@ -39,17 +39,20 @@ public class BulletinActivity extends BaseWapperActivity {
 	protected void loadViewLayout() {
 		setContentView(R.layout.prom_bulletin_activity);
 		bulletinInfos = new ArrayList<BulletinVo>();
-		setTitle("促销快报");
+		setTitle(getString(R.string.saleTitleTitleNameMsg));
 	}
 
 	@Override
 	protected void processLogic() {
 		RequestVo bulletinReqVo = new RequestVo();
-		bulletinReqVo.requestUrl =R.string.topic;
+		bulletinReqVo.requestUrl =R.string.sysRequestServLet;
 		bulletinReqVo.context= context;
 		HashMap<String,String> paramMap = new HashMap<String, String>();
 		paramMap.put("page", "");
 		paramMap.put("pageNum", "");
+		//type=1001 查询类型过滤
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASECONTENTPROD\",\"type\":\"1001\"}}";
+		paramMap.put("JsonData", inmapData);
 		bulletinReqVo.requestDataMap = paramMap;
 		
 		bulletinReqVo.jsonParser = new BulletinParser();

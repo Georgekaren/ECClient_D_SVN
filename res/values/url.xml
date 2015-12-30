@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="sysRequestCharacter">UTF-8</string>
+    <string name="sysRequestHost">http://192.168.1.26:8080/ECServer_D/</string>
+    
+    <string name="sysRequestServLet">BusiServlet</string>
+    <string name="sysRequestLoginServLet">LoginServlet</string>
+    <string name="sysRequestGetDataFlag">data</string>
+    
     <string name="url_version">version</string>
     <string name="url_addresslist">addresslist</string>
     <string name="url_home">home</string>

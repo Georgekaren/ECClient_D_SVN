@@ -40,7 +40,7 @@ public class LoginActivity extends BaseWapperActivity {
 	protected void loadViewLayout() {
 		sp = getSharedPreferences("userinfo", MODE_PRIVATE);
 		setContentView(R.layout.login_activity);
-		setTitle("登录");
+		setTitle(getString(R.string.loginTitleLoginButtonNameMsg));
 	}
 
 	protected void processLogic() {
@@ -78,12 +78,15 @@ public class LoginActivity extends BaseWapperActivity {
 			this.userPwd = userPwd;
 			showProgressDialog();
 			RequestVo vo = new RequestVo();
-			vo.requestUrl = R.string.login;
+			vo.requestUrl = R.string.sysRequestLoginServLet;
 			vo.jsonParser = new LoginParser();
 			vo.context = this;
 			HashMap map = new HashMap();
 			map.put("username", userName);
 			map.put("password", userPwd);
+			map.put("loginact", "login");
+			String inMapData="{\"ServiceName\":\"userManagerService\" , \"Data\":{\"ACTION\":\"QRYUSER\",\"name\":\""+userName+"\",\"password\":\""+userPwd+"\"}}";
+			map.put("JsonData", inMapData);
 			vo.requestDataMap = map;
 			super.getDataFromServer(vo, new DataCallback<UserInfo>() {
 
@@ -91,7 +94,7 @@ public class LoginActivity extends BaseWapperActivity {
 				public void processData(UserInfo paramObject, boolean paramBoolean) {
 					if (paramObject != null) {
 						if (paramObject.getUserId() == null) {
-							Toast.makeText(LoginActivity.this, "用户名或是 密码错误", Toast.LENGTH_LONG).show();
+							Toast.makeText(LoginActivity.this, getString(R.string.loginMsgSignErroUserMsg), Toast.LENGTH_LONG).show();
 							return;
 						}
 						Editor ed = sp.edit();
@@ -113,7 +116,7 @@ public class LoginActivity extends BaseWapperActivity {
 						}
 						finish();
 					} else {
-						Toast.makeText(LoginActivity.this, "用户名或是 密码错误", Toast.LENGTH_LONG).show();
+						Toast.makeText(LoginActivity.this, getString(R.string.loginMsgSignErroUserMsg), Toast.LENGTH_LONG).show();
 					}
 				}
 			});

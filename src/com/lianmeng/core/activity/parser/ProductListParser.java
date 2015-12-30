@@ -16,7 +16,7 @@ public class ProductListParser extends BaseParser<List<ProductListVo>> {
 	public List<ProductListVo> parseJSON(String paramString) throws JSONException {
 		if(super.checkResponse(paramString)!=null){
 			JSONObject jsonObject = new JSONObject(paramString);
-			String productlist = jsonObject.getString("productlist");
+			String productlist = jsonObject.getString("DATA_INFO");
  			return JSON.parseArray(productlist, ProductListVo.class);
 		}else{
 		return null;

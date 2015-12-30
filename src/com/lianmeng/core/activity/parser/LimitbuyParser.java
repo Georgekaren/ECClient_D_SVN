@@ -6,18 +6,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.alibaba.fastjson.JSON;
-import com.lianmeng.core.activity.vo.Limitbuy;
+import com.lianmeng.core.activity.vo.LimitBuyVo;
 
 
 
-public class LimitbuyParser extends BaseParser<List<Limitbuy>> {
+public class LimitbuyParser extends BaseParser<List<LimitBuyVo>> {
 
 	@Override
-	public List<Limitbuy> parseJSON(String paramString) throws JSONException {
+	public List<LimitBuyVo> parseJSON(String paramString) throws JSONException {
 		if(super.checkResponse(paramString)!=null){
 			JSONObject jsonObject = new JSONObject(paramString);
-			String productlist = jsonObject.getString("productlist");
-			return JSON.parseArray(productlist, Limitbuy.class);
+			String productlist = jsonObject.getString("DATA_INFO");
+			return JSON.parseArray(productlist, LimitBuyVo.class);
 		}else{
 		return null;
 		}

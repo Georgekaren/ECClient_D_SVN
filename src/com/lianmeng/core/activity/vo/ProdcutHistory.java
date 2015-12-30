@@ -7,13 +7,17 @@ package com.lianmeng.core.activity.vo;
  * 
  */
 public class ProdcutHistory extends ProductListVo implements Comparable<ProdcutHistory>{
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -8452205709271490443L;
 	/** 浏览时间 */
 	private long time;
 
 	public ProdcutHistory() {
 	}
 	
-	public ProdcutHistory(int id, String name, String pic, double marketprice, double price, int comment_count,
+	public ProdcutHistory(String id, String name, String pic, double marketprice, double price, int comment_count,
 			long time) {
 		super(id, name, pic, marketprice, price, comment_count);
 		this.time = time;

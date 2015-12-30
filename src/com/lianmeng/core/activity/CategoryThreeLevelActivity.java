@@ -1,5 +1,6 @@
 package com.lianmeng.core.activity;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.lianmeng.core.activity.R;
@@ -49,8 +50,12 @@ public class CategoryThreeLevelActivity extends BaseWapperActivity {
 	@Override
 	protected void processLogic() {
 		RequestVo categoryReqVo = new RequestVo();
-		categoryReqVo.requestUrl =R.string.category;
+		categoryReqVo.requestUrl =R.string.sysRequestServLet;
 		categoryReqVo.context= context;
+		HashMap<String, String> requestDataMap = new HashMap<String, String>();
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYPRODTYPELIST\"}}";
+		requestDataMap.put("JsonData", inmapData);
+		categoryReqVo.requestDataMap = requestDataMap;
 		categoryReqVo.jsonParser = new CategoryParser();
 		super.getDataFromServer(categoryReqVo, new DataCallback<List<CategoryVo>>(){
 

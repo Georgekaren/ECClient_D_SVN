@@ -1,5 +1,7 @@
 package com.lianmeng.core.activity;
 
+import java.util.HashMap;
+
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
@@ -8,6 +10,7 @@ import com.lianmeng.core.activity.R;
 import com.lianmeng.core.activity.parser.OrderForSubmitParser;
 import com.lianmeng.core.activity.vo.OrderForSubmit;
 import com.lianmeng.core.activity.vo.RequestVo;
+import com.lianmeng.core.framework.util.SysU;
 
 public class OrdrSubmitOkActivity extends BaseWapperActivity {
 	private TextView orderid_value_text;
@@ -52,8 +55,13 @@ public class OrdrSubmitOkActivity extends BaseWapperActivity {
 	protected void processLogic() {
 		RequestVo vo = new RequestVo();
 		vo.context = this;
-		vo.requestUrl = R.string.ordersumbit;
+		//vo.requestUrl = R.string.ordersumbit;
 		vo.jsonParser = new OrderForSubmitParser();
+		String inmapData="{\"ServiceName\":\"srvOrderManagerService\" , \"Data\":{\"ACTION\":\"PAYENDDISPLAYORDER\",\"userId\":\""+SysU.USERID+"\"}}";
+		HashMap<String, String> prodMap = new HashMap<String, String>();
+		prodMap.put("JsonData", inmapData);
+		vo.requestDataMap = prodMap;
+		vo.requestUrl = R.string.sysRequestServLet;
 		getDataFromServer(vo, new DataCallback<OrderForSubmit>() {
 			@Override
 			public void processData(OrderForSubmit paramObject,
