@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8.0dip"
                     android:layout_marginTop="5.0dip"
-                    android:text="商品名称:" />
+                    android:text="@string/prodListTitleProdNameMsg" />
 
                 <TextView
                     android:id="@id/textProductNameValue"
@@ -63,7 +63,7 @@
                     android:layout_below="@id/textProductNameValue"
                     android:layout_marginLeft="8.0dip"
                     android:layout_marginTop="10.0dip"
-                    android:text="商品编号：" />
+                    android:text="@string/prodListTitleProdNoMsg" />
 
                 <TextView
                     android:id="@id/textProductIdValue"
@@ -88,7 +88,7 @@
                         android:layout_marginLeft="8.0dip"
                         android:ellipsize="marquee"
                         android:singleLine="true"
-                        android:text="市场价：" />
+                        android:text="@string/prodListTitleProdPriceMsg" />
 
                     <TextView
                         android:id="@id/textOriginalPriceValue"
@@ -104,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20.0dip"
                         android:layout_toRightOf="@id/textOriginalPriceValue"
-                        android:text="商品评分：" />
+                        android:text="@string/prodListTitleProdGradeMsg" />
 
                     <ImageView
                         android:id="@id/textProdGradeValue"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/priceLayout"
                     android:layout_marginLeft="8.0dip"
-                    android:text="售价：" />
+                    android:text="@string/prodListTitleProdOfferPriceMsg" />
 
                 <TextView
                     android:id="@id/textPriceValue"
@@ -141,7 +141,7 @@
                     android:layout_below="@id/textPrice"
                     android:layout_marginLeft="8.0dip"
                     android:layout_marginTop="6.0dip"
-                    android:text="数量：" />
+                    android:text="@string/prodListTitleProdNumMsg" />
 
                 <EditText
                     android:id="@+id/prodNumValue"
@@ -157,7 +157,7 @@
                     android:paddingRight="5.0dip"
                     android:paddingTop="0.0dip"
                     android:singleLine="true"
-                    android:text="1"
+                    android:text=""
                     android:textSize="10.0sp" />
             </RelativeLayout>
 
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8.0dip"
-                    android:text="颜色：" />
+                    android:text="@string/prodListTitleProdColorMsg" />
 
                 <TextView
                     android:id="@id/textColorValue"
@@ -199,7 +199,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8.0dip"
                     android:layout_toRightOf="@id/textColorValue"
-                    android:text="尺码：" />
+                    android:text="@string/prodListTitleProdSizeMsg" />
 
                 <TextView
                     android:id="@id/textSizeValue"
@@ -266,7 +266,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8.0dip"
-                    android:text="商品描述" />
+                    android:text="@string/prodListTitleProdDescribeMsg" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -282,7 +282,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8.0dip"
-                    android:text="查看库存" />
+                    android:text="@string/prodListTitleProdViewInventoryMsg" />
 
                 <TextView
                     android:id="@id/textProdIsStock"
@@ -291,7 +291,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/textLookProdStock"
-                    android:text="(有货)" />
+                    android:text="@string/prodListTitleProdHasInventoryMsg" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -307,7 +307,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8.0dip"
-                    android:text="购买评论 (" />
+                    android:text="@string/prodListTitleProdHasCommondLeftMsg" />
 
                 <TextView
                     android:id="@id/textProductCommentNum"
@@ -324,7 +324,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/textProductCommentNum"
-                    android:text=")" />
+                    android:text="@string/prodListTitleProdHasCommondRightMsg" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -340,7 +340,7 @@
                     android:layout_centerInParent="true"
                     android:background="@anim/button_long"
                     android:gravity="center"
-                    android:text="联系电话 18973137314" />
+                    android:text="@string/prodListTitleProdLinkTeleMsg" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
@@ -351,7 +351,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="商品详情信息为空！"
+        android:text="@string/prodListTitleProdDetailNullMsg"
         android:visibility="gone" />
 
 </RelativeLayout>

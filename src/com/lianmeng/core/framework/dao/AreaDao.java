@@ -3,7 +3,7 @@ package com.lianmeng.core.framework.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lianmeng.core.activity.vo.Area;
+import com.lianmeng.core.framework.sysvo.Area;
 
 import android.content.Context;
 import android.database.Cursor;

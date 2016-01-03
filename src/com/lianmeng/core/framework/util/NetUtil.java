@@ -33,7 +33,7 @@ import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import com.lianmeng.core.activity.R;
-import com.lianmeng.core.activity.vo.RequestVo;
+import com.lianmeng.core.framework.sysvo.RequestVo;
 
 /**
  * 

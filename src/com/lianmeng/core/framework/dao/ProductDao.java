@@ -3,7 +3,7 @@ package com.lianmeng.core.framework.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lianmeng.core.activity.vo.ProdcutHistory;
+import com.lianmeng.core.product.vo.ProdcutHistory;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -17,15 +17,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-<!--             <TextView -->
-<!--                 android:id="@+id/payment_orderPrice_text" -->
-<!--                 style="@style/style_20_A2282F_BOLD" -->
-<!--                 android:layout_width="fill_parent" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:layout_marginLeft="10.0dip" -->
-<!--                 android:layout_marginRight="10.0dip" -->
-<!--                 android:layout_marginTop="10.0dip" -->
-<!--                 android:text="您共需为订单支付：￥：270" /> -->
+
 
             <RelativeLayout
                 android:clickable="true"
@@ -38,7 +30,6 @@
                 android:padding="10.0dip" >
 			<LinearLayout 
 			    android:id="@+id/select_address"
-        	    android:layout_below="@id/payment_address_rel"
         	    android:orientation="vertical"
         	    android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
@@ -48,7 +39,7 @@
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:layout_marginRight="20.0dip"
-	                    android:text="请添加您的收货地址" />
+	                    android:text="@string/payLableSignNoAddressMsg" />
 		                	
 	             <TextView
 	                      android:id="@id/textAdress2"
@@ -58,7 +49,7 @@
 	                      android:layout_alignParentRight="true"
 	                      android:gravity="right"
 	                      android:maxWidth="200.0dip"
-	                      android:text="阿涛" />
+	                      android:text="" />
 	                        
 	                  <TextView
 	                      android:id="@id/textAdress3"
@@ -68,7 +59,7 @@
 	                      android:layout_alignParentRight="true"
 	                      android:gravity="right"
 	                      android:maxWidth="200.0dip"
-	                      android:text="北京市海淀区" />
+	                      android:text="" />
 	                 
 	                  <TextView
 	                      android:id="@id/textAdress4"
@@ -78,7 +69,7 @@
 	                      android:layout_alignParentRight="true"
 	                      android:gravity="right"
 	                      android:maxWidth="200.0dip"
-	                      android:text="上地7街，xxx公司软件开发部" />
+	                      android:text="" />
 	                    </LinearLayout>
                 <ImageView
                     android:layout_width="wrap_content"
@@ -110,7 +101,7 @@
                     style="@style/style_16_666666"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="支付方式：" />
+                    android:text="@string/orderDetailLablePayType" />
 
                 <TextView
                     android:id="@+id/payment_payValue_text"
@@ -151,7 +142,7 @@
                     style="@style/style_16_666666"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="送货时间：" />
+                    android:text="@string/orderDetailLablePfNeed" />
 
                 <TextView
                    
@@ -190,7 +181,7 @@
                     style="@style/style_16_666666"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="如需开发票，请填写抬头" />
+                    android:text="@string/orderDetailLableHiteInvoiceTopTitleName" />
 
                 <TextView
                     android:id="@+id/payment_invoiceValue_text"
@@ -229,7 +220,7 @@
                     style="@style/style_16_666666"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="请留言：" />
+                    android:text="@string/payLableSignLeaveMsg" />
 
                 <TextView
                     android:id="@+id/payment_remarkView_text"
@@ -265,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="2.0dip"
                     android:paddingTop="5.0sp"
-                    android:text="商品明细" />
+                    android:text="@string/payLableProdDetail" />
             </LinearLayout>
 
             <ListView
@@ -287,7 +278,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5.0dip"
-                    android:text="数量总计：" />
+                    android:text="@string/payLableProdAmoutCount" />
 
                 <TextView
                     
@@ -297,7 +288,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:paddingRight="5.0dip"
-                    android:text="2" />
+                    android:text="" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -309,7 +300,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5.0dip"
-                    android:text="赠送积分总计：" />
+                    android:text="@string/payLableProdPresentExpCount" />
 
                 <TextView
                     android:id="@+id/shopcar_total_bonus_text"
@@ -318,7 +309,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:paddingRight="5.0dip"
-                    android:text="500" />
+                    android:text="" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -329,7 +320,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5.0dip"
-                    android:text="金额总计(不含运费)：" />
+                    android:text="@string/payLableProdMoTotal" />
 
                 <TextView
                     android:id="@+id/shopcar_total_money_text"
@@ -338,7 +329,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:paddingRight="5.0dip"
-                    android:text="￥：270" />
+                    android:text="" />
             </RelativeLayout>
             <TextView
                 android:id="@+id/ordr_submit_bottom_text"
@@ -348,7 +339,7 @@
                 android:layout_gravity="center"
                 android:background="@anim/button_long"
                 android:gravity="center"
-                android:text="提交订单" />
+                android:text="@string/payLableProdSubmit" />
         </LinearLayout>
     </ScrollView>
 

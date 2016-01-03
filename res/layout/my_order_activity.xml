@@ -4,30 +4,6 @@
     android:layout_height="fill_parent"
     android:background="@drawable/home_backgroud" >
 
-<!--     <FrameLayout -->
-<!--         android:id="@+id/my_order_head" -->
-<!--         android:layout_width="fill_parent" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:background="@drawable/head_bg" > -->
-
-<!--         <TextView -->
-<!--             android:id="@+id/my_order_head_title" -->
-<!--             style="@style/style_18_BEBEBE_BOLD" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:layout_gravity="center" -->
-<!--             android:text="我的订单" /> -->
-
-<!--         <TextView -->
-<!--             android:id="@+id/head_back_text" -->
-<!--             style="@style/style_15_EBEBEB_BOLD" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:background="@anim/head_back" -->
-<!--             android:gravity="center" -->
-<!--             android:text="返  回" /> -->
-<!--     </FrameLayout> -->
-<!-- android:layout_below="@id/my_order_head" -->
     <LinearLayout
         android:id="@+id/my_order_tab"
         android:layout_width="fill_parent"
@@ -44,7 +20,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/segment_selected_1_bg"
             android:gravity="center"
-            android:text="一月内订单" />
+            android:text="@string/orderListButtonOrderOneMonth" />
 
         <TextView
             android:id="@+id/my_order_all"
@@ -53,7 +29,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/segment_normal_2_bg"
             android:gravity="center"
-            android:text="所有订单" />
+            android:text="@string/orderListButtonOrderAll" />
 
         <TextView
             android:id="@+id/my_order_notsend"
@@ -62,7 +38,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/segment_normal_3_bg"
             android:gravity="center"
-            android:text="已取消订单" />
+            android:text="@string/orderListButtonOrderHasCancel" />
     </LinearLayout>
 
     <ListView
@@ -84,9 +60,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="暂无订单"
+        android:text="@string/orderListButtonNoOrder"
         android:visibility="gone" />
-<!-- 	<include -->
-<!--         android:id="@id/bottomBar" -->
-<!--         layout="@layout/bottombar" /> -->
 </RelativeLayout>

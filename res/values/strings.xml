@@ -2,8 +2,7 @@
 <resources>
     
     <string name="hello">廉盟超市部欢迎您!</string>
-    <string name="login_name">用户名：</string>
-    <string name="login_pwd">密码：</string>
+    
     <string name="app_name">廉盟</string>
     <string name="net_error">当前网络不可用，请先连接Internet！</string>
 	<string name="my_account_title">我的账户</string>
@@ -35,29 +34,8 @@
 	<string name="collect">收藏</string>
 	<string name="prom_bulletin">促销快报</string>
 	<string name="help_title">帮助中心</string>
-	<string name="ordr_tel">01088499999</string>
-	<string name="get_userinfo">userinfo.jsp</string>
-	<string name="get_favorite_list">android_favorite.jsp</string>
-	<string name="get_logistics">logistics.jsp</string>
-	<string name="get_order_list">ordrlist.jsp</string>
-	<string name="get_address_list">android_address.jsp</string>
-	<string name="save_address">addresssave.jsp</string>
-	<string name="login">login</string>
+	<string name="ordr_tel">1897313</string>
 	
-
-	<string name="topic_plist">topic/plist</string>
-	<string name="home">home</string>
-
-	<string name="register">register</string> 
-	<string name="cart">cart</string>
-
-	<string name="category">category</string>
-	<string name="prodList">productlist</string>
-	<string name="product">product</string>
-	<string name="description">/product/description</string>
-	<string name="topic">topic</string>
- 	<string name="search">search</string>
- 	<string name="searchRecommend">search/recommend</string>
 	
 	<string name="downning">正在下载</string>
 	<string name="down_error">下载失败</string>
@@ -79,13 +57,8 @@
 	<string name="set_success">设置成功</string>
 	<string name="category_view">分类浏览</string>
 	<string name="clear">清空</string>
-	<string name="userinfo">userinfo</string>
-    <string name="orderlist">orderlist</string>
-    <string name="orderdetail">orderdetail</string>
-    <string name="favorites">favorites</string>
-    <string name="help">help</string>
-    <string name="checkout">checkout</string>   
+	
     <string name="uphandcheckout">提交订单</string>  
     <string name="uphandsuccess">提交成功</string>  
-    <string name="ordersumbit">ordersumbit</string> 
+    
 </resources>

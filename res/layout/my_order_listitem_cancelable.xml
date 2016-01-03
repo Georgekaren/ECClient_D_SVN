@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10.0dip"
         android:layout_marginTop="5.0dip"
-        android:text="订单编号：" />
+        android:text="@string/orderListLableMsgMsgOrderNo" />
 
     <TextView
         android:id="@id/textPriceIcon"
@@ -27,7 +27,7 @@
         android:layout_below="@id/textOrderIDIcon"
         android:layout_marginLeft="10.0dip"
         android:layout_marginTop="3.0dip"
-        android:text="总价：" />
+        android:text="@string/orderListLableMsgMsgOrderAmount" />
 
     <TextView
         android:id="@id/textTimeIcon"
@@ -37,7 +37,7 @@
         android:layout_below="@id/textPriceIcon"
         android:layout_marginLeft="10.0dip"
         android:layout_marginTop="3.0dip"
-        android:text="订单生成时间：" />
+        android:text="@string/orderDetailLableCreateDate" />
 
     <TextView
         android:id="@id/textStateIcon"
@@ -47,17 +47,8 @@
         android:layout_below="@id/textTimeIcon"
         android:layout_marginLeft="10.0dip"
         android:layout_marginTop="3.0dip"
-        android:text="状态：" />
+        android:text="@string/orderDetailLableOrderState" />
 
-<!--     <TextView -->
-<!--         android:id="@id/textZhiFu" -->
-<!--         style="@style/style_14_9F9F9F_BOLD" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_below="@id/textStateIcon" -->
-<!--         android:layout_marginLeft="10.0dip" -->
-<!--         android:layout_marginTop="3.0dip" -->
-<!--         android:text="支付方式：" /> -->
 
     <TextView
         android:id="@+id/orderId_text"
@@ -110,16 +101,6 @@
         android:layout_marginTop="3.0dip"
         android:singleLine="true" />
 
-<!--     <TextView -->
-<!--         android:id="@+id/orderPayment_text" -->
-<!--         style="@style/style_14_C21513_BOLD" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_alignParentRight="true" -->
-<!--         android:layout_below="@id/orderState_text" -->
-<!--         android:layout_marginRight="20.0dip" -->
-<!--         android:layout_marginTop="3.0dip" -->
-<!--         android:singleLine="true" /> -->
 	</RelativeLayout>
     <LinearLayout
         android:id="@id/linOrderPayCancel"
@@ -145,12 +126,5 @@
             android:text="" />
    
     </LinearLayout>
-     <LinearLayout
-        android:id="@id/linLine"
-        android:layout_width="fill_parent"
-        android:layout_height="1.0dip"
-        android:layout_below="@id/linOrderPayCancel"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="3.0dip"
-        android:background="@drawable/line" />
+     
 </RelativeLayout>

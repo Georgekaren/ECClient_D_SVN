@@ -3,7 +3,7 @@ package com.lianmeng.core.framework.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lianmeng.core.activity.vo.CategoryVo;
+import com.lianmeng.core.category.vo.CategoryVo;
 
 
 public class DivideCategoryList {

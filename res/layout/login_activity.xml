@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="80.0dip"
             android:layout_height="wrap_content"
-            android:text="@string/login_name"
+            android:text="@string/loginTitleUserNameTitleMsg"
             android:textColor="@color/black"
             android:textSize="15.0sp" />
 
@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="80.0dip"
             android:layout_height="wrap_content"
-            android:text="@string/login_pwd"
+            android:text="@string/loginTitleLoginPasswordMsg"
             android:textColor="@color/black"
             android:textSize="15.0sp" />
 
@@ -56,7 +56,7 @@
         android:layout_width="126dp"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:text="记住密码"
+        android:text="@string/loginButtonRemendPassword"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
@@ -69,7 +69,7 @@
         android:layout_gravity="center"
         android:background="@anim/button_long"
         android:gravity="center"
-        android:text="登陆" />
+        android:text="@string/loginTitleLoginButtonNameMsg" />
 
     <TextView
         android:id="@+id/register_text"
@@ -80,6 +80,6 @@
         android:layout_gravity="center"
         android:background="@anim/button_long"
         android:gravity="center"
-        android:text="注册" />
+        android:text="@string/loginButtonRegisteNameMsg" />
 
 </LinearLayout>

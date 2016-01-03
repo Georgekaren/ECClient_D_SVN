@@ -2,9 +2,9 @@ package com.lianmeng.core.framework.service;
 
 import java.util.List;
 
-import com.lianmeng.core.activity.vo.ProdcutHistory;
 import com.lianmeng.core.framework.dao.ProductDao;
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.product.vo.ProdcutHistory;
 
 import android.app.Service;
 import android.content.Intent;

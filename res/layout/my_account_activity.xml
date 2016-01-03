@@ -17,7 +17,7 @@
             style="@style/style_18_000000_BOLD"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="账号信息"
+            android:text="@string/accountMsgAccountDisMsg"
             android:textColor="@android:color/black" />
     </RelativeLayout>
 
@@ -44,7 +44,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10.0dip"
                 android:gravity="left|center"
-                android:text="@string/login_name" />
+                android:text="@string/loginTitleUserNameTitleMsg" />
 
             <TextView
                 android:id="@+id/my_name_text"
@@ -73,7 +73,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10.0dip"
                 android:gravity="left|center"
-                android:text="积分" />
+                android:text="@string/accountMsgIntegralMsg" />
 
             <TextView
                 android:id="@+id/my_bonus_text"
@@ -102,7 +102,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10.0dip"
                 android:gravity="left|center"
-                android:text="等级" />
+                android:text="@string/accountMsgGradeMsg" />
 
             <TextView
                 android:id="@+id/my_level_text"
@@ -137,7 +137,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10.0dip"
                 android:gravity="left|center"
-                android:text="我的订单" />
+                android:text="@string/accountMsgMyOrderMsg" />
 
             <ImageView
                 android:layout_marginTop="12dip"
@@ -163,7 +163,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10.0dip"
                 android:gravity="left|center"
-                android:text="地址管理" />
+                android:text="@string/accountMsgAddressManagerMsg" />
 
               <ImageView
                   android:layout_marginTop="12dip"
@@ -189,7 +189,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10.0dip"
                 android:gravity="left|center"
-                android:text="收藏夹" />
+                android:text="@string/accountMsgFavoriteMsg" />
 
             <ImageView
                 android:layout_marginTop="12dip"
@@ -199,97 +199,5 @@
         </LinearLayout>
     </LinearLayout>
         
-    <!-- 
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/my_info"
-        android:layout_gravity="center"
-        android:layout_marginBottom="50.0dip"
-        android:layout_marginLeft="10.0dip"
-        android:layout_marginRight="10.0dip"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/ll_account_myorder"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                style="@style/style_17_808183_BOLD"
-                android:layout_width="80.0dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:gravity="left|center"
-                android:text="我的订单" />
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/line" />
-
-        <LinearLayout
-            android:id="@+id/ll_account_address_manage"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:orientation="horizontal" >
-
-            <TextView
-                style="@style/style_17_808183_BOLD"
-                android:layout_width="80.0dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:gravity="left|center"
-                android:text="地址管理" />
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/line" />
-
-        <LinearLayout
-            android:id="@+id/ll_account_conservation"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:orientation="horizontal" >
-
-            <TextView
-                style="@style/style_17_808183_BOLD"
-                android:layout_width="80.0dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:gravity="left|center"
-                android:text="收藏夹" />
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/line" />
-    </LinearLayout> -->
 
 </RelativeLayout>

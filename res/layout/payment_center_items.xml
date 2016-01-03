@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
                 android:singleLine="true"
-                android:text="编码：" />
+                android:text="@string/payLableProdOrderNo" />
 
             <TextView
                 android:id="@+id/shopcar_item_prodId_text"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
                 android:singleLine="true"
-                android:text="单价：" />
+                android:text="@string/payLableProdOrderPrice" />
 
             <TextView
                 android:id="@+id/shopcar_item_prodPrice_text"
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
                 android:singleLine="true"
-                android:text="数量：" />
+                android:text="@string/payLableProdOrderNum" />
 
             <TextView
                 android:id="@+id/shopcar_item_prodCount_text"
@@ -112,7 +112,7 @@
                 android:ellipsize="marquee"
                 android:paddingLeft="10.0dip"
                 android:singleLine="true"
-                android:text="小计：" />
+                android:text="@string/payLableProdOrderSubTotal" />
 
             <TextView
                 android:id="@+id/shopcar_item_subtotal_text"
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="删除"
+            android:text="@string/payLableProdOrderDel"
             android:visibility="gone" />
     </RelativeLayout>
 

@@ -2,7 +2,7 @@ package com.lianmeng.core.framework.service;
 
 import java.util.List;
 
-import com.lianmeng.core.activity.vo.ProdcutHistory;
+import com.lianmeng.core.product.vo.ProdcutHistory;
 
 
 public interface IECManager {

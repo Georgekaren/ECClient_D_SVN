@@ -19,7 +19,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5.0dip"
-                    android:text="数量总计：" />
+                    android:text="@string/shoppingCartLabelProdSumMsg" />
 
                 <TextView
                     android:id="@+id/shopcar_total_buycount_text_1"
@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:paddingRight="5.0dip"
-                    android:text="55" />
+                    android:text="" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5.0dip"
-                    android:text="赠送积分总计：" />
+                    android:text="@string/shoppingCartLabelPresentExpSumMsg" />
 
                 <TextView
                     android:id="@+id/shopcar_total_bonus_text_1"
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:paddingRight="5.0dip"
-                    android:text="5500" />
+                    android:text="" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:paddingRight="5.0dip"
-                    android:text="￥：6500" />
+                    android:text="@string/payLableProdMoTotal" />
             </RelativeLayout>
 
             <LinearLayout
@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="2.0dip"
                     android:paddingTop="5.0sp"
-                    android:text="商品明细" />
+                    android:text="@string/payLableProdDetail" />
             </LinearLayout>
 
             <ListView
@@ -112,7 +112,7 @@
                 android:layout_gravity="center"
                 android:background="@anim/button_long"
                 android:gravity="center"
-                android:text="去 结 算" />
+                android:text="@string/shoppingCartLabelSettleMsg" />
         </LinearLayout>
     </ScrollView>
  

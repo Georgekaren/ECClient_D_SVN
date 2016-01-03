@@ -20,18 +20,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lianmeng.core.activity.R;
-import com.lianmeng.core.activity.HomeActivity;
-import com.lianmeng.core.activity.parser.BaseParser;
-import com.lianmeng.core.activity.parser.VersionParser;
-import com.lianmeng.core.activity.vo.RequestVo;
-import com.lianmeng.core.activity.vo.Version;
-import com.lianmeng.core.activity.vo.VersionVo;
 import com.lianmeng.core.framework.application.ECApplication;
 import com.lianmeng.core.framework.engine.DownLoadTask;
 import com.lianmeng.core.framework.engine.DownLoadTask.DownlaodListener;
+import com.lianmeng.core.framework.sysparser.BaseParser;
+import com.lianmeng.core.framework.sysvo.RequestVo;
 import com.lianmeng.core.framework.util.Logger;
 import com.lianmeng.core.framework.util.NetUtil;
 import com.lianmeng.core.framework.util.ThreadPoolManager;
+import com.lianmeng.core.home.activity.HomeActivity;
+import com.lianmeng.core.version.parser.VersionParser;
+import com.lianmeng.core.version.vo.Version;
+import com.lianmeng.core.version.vo.VersionVo;
 
 public class InitManagerActivity extends Activity implements Runnable, DownlaodListener {
 
@@ -65,7 +65,7 @@ public class InitManagerActivity extends Activity implements Runnable, DownlaodL
 				switch (msg.what) {
 				case DOWN_ERROR:
 					mProgressDialog.dismiss();
-					Toast.makeText(InitManagerActivity.this, R.string.down_error, Toast.LENGTH_SHORT).show();
+					Toast.makeText(InitManagerActivity.this, R.string.initMsgDownFailMsg, Toast.LENGTH_SHORT).show();
 					gotoHome();
 					break;
 				case SHOW_UPDATE_DIALOG:
@@ -100,7 +100,7 @@ public class InitManagerActivity extends Activity implements Runnable, DownlaodL
 		protected void onCreate(Bundle savedInstanceState) {
 
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.welcome_activity);
+			setContentView(R.layout.init_activity);
 			try {
 				clientVersion = getClientVersion();
 			} catch (NameNotFoundException e) {

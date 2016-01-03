@@ -24,7 +24,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="收 货 人："
+                android:text="@string/addressLabelReceiverName"
                 style="@style/style_14_9F9F9F"
                 android:textSize="15.0sp" />
 
@@ -46,7 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="联系电话："
+                android:text="@string/addressLabelTeleName"
                 style="@style/style_14_9F9F9F"
                 android:textSize="15.0sp" />
 
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="收货地址："
+                android:text="@string/addressLabelReAddressName"
                 style="@style/style_14_9F9F9F"
                 android:textSize="15.0sp" />
 
@@ -92,7 +92,7 @@
         android:layout_marginRight="10.0dip"
         android:background="@drawable/btn_little_blue"
         android:gravity="center_horizontal"
-        android:text="修  改"
+        android:text="@string/addressButtonModifyName"
         android:textColor="@color/black" />
 
     <TextView
@@ -103,7 +103,7 @@
         android:layout_toLeftOf="@id/address_manage_update_btn"
         android:background="@drawable/btn_little_white"
         android:gravity="center_horizontal"
-        android:text="删  除"
+        android:text="@string/addressButtonAddrssDeleteName"
         android:textColor="@color/black" />
 
 </RelativeLayout>

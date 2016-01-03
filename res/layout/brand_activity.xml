@@ -28,12 +28,10 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_centerInParent="true"
-            android:text="服务端无数据"
+            android:text="@string/extendProdMsgNoServerMsg"
             android:visibility="gone" />
     </LinearLayout>
 
-    <!-- <include
-        android:id="@id/bottomBar"
-        layout="@layout/bottombar" /> -->
+
 
 </RelativeLayout>

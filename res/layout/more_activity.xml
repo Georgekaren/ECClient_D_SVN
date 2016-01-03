@@ -87,7 +87,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="10.0dip"
-                android:text="登录"
+                android:text="@string/moreTitleTitleLoginNameMsg"
                 android:textSize="18.0sp" />
 
             <ImageView

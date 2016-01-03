@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/shopcar_default_img"
         android:layout_centerHorizontal="true"
-        android:text="您的购物车中没有商品"
+        android:text="@string/shoppingCartLabelNoProductMsg"
         android:visibility="visible" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:background="@anim/button_long"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="去  逛  逛"
+        android:text="@string/shoppingCartLabelFindProductMsg"
         android:visibility="visible" />
  
 

@@ -5,20 +5,6 @@
     android:background="@drawable/home_backgroud"
     android:orientation="vertical" >
 
-<!--     <FrameLayout -->
-<!--         android:id="@id/fraHead" -->
-<!--         android:layout_width="fill_parent" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:background="@drawable/head_bg" > -->
-
-<!--         <TextView -->
-<!--             style="@style/style_18_BEBEBE_BOLD" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:layout_gravity="center" -->
-<!--             android:text="提交成功" /> -->
-<!--     </FrameLayout> -->
-
     <ScrollView
         android:id="@id/scrLayout"
         android:layout_width="fill_parent"
@@ -41,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="您的订单已提交，我们会尽快安排发货！" />
+                android:text="@string/orderDetailLableOrderSubmit" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -65,7 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5.0dip"
-                        android:text="订单号：" />
+                        android:text="@string/orderDetailLableOrderNo" />
                     <TextView
                         android:id="@+id/orderid_value_text"
                         style="@style/style_15_666666"
@@ -86,7 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5.0dip"
-                        android:text="应付金额：" />
+                        android:text="@string/orderDetailLableProdPayAmount" />
                     <TextView
                         android:id="@+id/paymoney_value_text"
                         style="@style/style_15_666666"
@@ -107,7 +93,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5.0dip"
-                        android:text="支付方式：" />
+                        android:text="@string/orderDetailLablePayType" />
                     <TextView
                         android:id="@+id/paytype_value_text"
                         style="@style/style_15_666666"
@@ -137,7 +123,7 @@
                     android:layout_weight="1.0"
                     android:background="@anim/button_long"
                     android:gravity="center"
-                    android:text="继续购物" />
+                    android:text="@string/orderDetailLableProdContinuShop" />
 
                 <TextView
                     android:id="@+id/to_ordr_detail_text"
@@ -148,7 +134,7 @@
                     android:layout_weight="1.0"
                     android:background="@anim/button_long"
                     android:gravity="center"
-                    android:text="查看订单" />
+                    android:text="@string/orderDetailLableProdViewOrder" />
             </LinearLayout>
 
             <LinearLayout
@@ -168,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5.0dip"
-                    android:text="如有疑问，您可以拨打客服电话：" />
+                    android:text="@string/orderDetailLableProdHasQuestion" />
 
                 <TextView
                     android:id="@id/textOrderTip"
@@ -176,13 +162,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5.0dip"
-                    android:text="400 616 0066" />
+                    android:text="@string/ordr_tel" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-<!--     <include -->
-<!--         android:id="@id/bottomBar" -->
-<!--         layout="@layout/bottombar" /> -->
 
 </RelativeLayout>
