@@ -1,5 +1,6 @@
 package com.lianmeng.core.activity;
 
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.Intent;
@@ -13,6 +14,7 @@ import com.lianmeng.core.activity.adapter.SelectAdressAdapter;
 import com.lianmeng.core.activity.parser.AddressManageParser;
 import com.lianmeng.core.activity.vo.AddressDetail;
 import com.lianmeng.core.activity.vo.RequestVo;
+import com.lianmeng.core.framework.util.SysU;
 
 /**
  * 地址选择，点击栏目返回<br>
@@ -57,7 +59,10 @@ public class SelectAddressActivity extends BaseWapperActivity implements OnItemC
 
 	@Override
 	protected void processLogic() {
-		RequestVo reqVo = new RequestVo(R.string.url_addresslist, this, null, new AddressManageParser());
+		HashMap<String, String> addressMap = new HashMap<String, String>();
+		String inmapData="{\"ServiceName\":\"addressManagerService\" , \"Data\":{\"ACTION\":\"QRYADDRESSLIST\",\"userId\":\""+SysU.USERID+"\"}}";
+		addressMap.put("JsonData", inmapData);
+		RequestVo reqVo = new RequestVo(R.string.sysRequestServLet, this, addressMap, new AddressManageParser());
 		getDataFromServer(reqVo, new DataCallback<List<AddressDetail>>() {
 
 			@Override

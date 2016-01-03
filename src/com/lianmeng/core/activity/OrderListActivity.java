@@ -208,7 +208,6 @@ public class OrderListActivity extends BaseWapperActivity implements
 	}
 
 	private void cancelableInit(List<OrderList> list) {
-		//TODO ADD BY LQT 20120421 -----BEGIN--------------
 		cancelablelist = new ArrayList<OrderList>();
 		uncancelablelist = new ArrayList<OrderList>();
 		//对订单是否可以取消做不同的处理
@@ -248,7 +247,7 @@ public class OrderListActivity extends BaseWapperActivity implements
 			try {
 				Calendar now = Calendar.getInstance();
 				SimpleDateFormat format = new SimpleDateFormat(
-						"yyyy/MM/dd HH:mm:ss");
+						"yyyy-MM-dd HH:mm:ss");
 				Date date = format.parse(item.getTime());
 				Calendar ordertime = Calendar.getInstance();
 				ordertime.setTime(date);

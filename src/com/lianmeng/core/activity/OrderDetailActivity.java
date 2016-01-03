@@ -20,6 +20,7 @@ import com.lianmeng.core.activity.vo.Payment;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.util.Constant;
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.framework.util.SysU;
 
 public class OrderDetailActivity extends BaseWapperActivity {
 
@@ -99,9 +100,11 @@ public class OrderDetailActivity extends BaseWapperActivity {
 		// 设置请求参数为：订单号码
 		vo.context = this;
 		vo.requestDataMap = new HashMap<String, String>();
+		String inmapData="{\"ServiceName\":\"srvOrderManagerService\" , \"Data\":{\"ACTION\":\"QRYHASPAYORDERDETAIL\",\"userId\":\""+SysU.USERID+"\",\"orderNo\":\""+orderId+"\"}}";
+		vo.requestDataMap.put("JsonData", inmapData);
 		vo.requestDataMap.put("orderId", orderId);
 		vo.jsonParser = new OrderDetailParser();
-		vo.requestUrl = R.string.orderdetail;
+		vo.requestUrl = R.string.sysRequestServLet;
 		Logger.d(TAG, "-----vo.requestUrl----------");
 		getDataFromServer(vo, new DataCallback<Map<String,Object>>() {
 			@Override
@@ -124,9 +127,34 @@ public class OrderDetailActivity extends BaseWapperActivity {
 					
 					textDetail1.setText(orderInfo.getStatus()+"");
 					textDetail2.setText(deliveryInfo.getType()+"");
-					textDetail3.setText(paymentInfo.getType()+"");
+					if (deliveryInfo.getType()==1006001) {
+						textDetail2.setText("商家送");
+			        }else if (deliveryInfo.getType()==1006002) {
+			        	textDetail2.setText("自取");
+			        }else if (deliveryInfo.getType()==1006004) {
+			        	textDetail2.setText("顺风");
+			        }else if (deliveryInfo.getType()==1006003) {
+			        	textDetail2.setText("申通");
+			        }else if (deliveryInfo.getType()==1006005) {
+			        	textDetail2.setText("EMS");
+			        }
+					
+					
+					if (deliveryInfo.getType()==1005002) {
+						textDetail3.setText("支付宝");
+			        }
+			        else if (deliveryInfo.getType()==1005003) {
+						textDetail3.setText("微信");
+			        }
+			        else if (deliveryInfo.getType()==1005004) {
+						textDetail3.setText("银联");
+			        }
+			        else {
+			        	textDetail3.setText("货到付款"); 
+			        }
+					
 					textDetail4.setText(orderInfo.getTime()+"");
-					textDetail5.setText(deliveryInfo.getType()+"");
+					textDetail5.setText(orderInfo.getTime()+"");
 					textDetail7.setText(invoiceInfo.getTitle()+"");
 					
 					textPrice2.setText(checkoutAdd.getTotal_price()+"");

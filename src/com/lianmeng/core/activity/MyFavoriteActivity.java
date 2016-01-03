@@ -7,15 +7,19 @@ import android.media.ToneGenerator;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lianmeng.core.activity.R;
 import com.lianmeng.core.activity.adapter.MyFavoriteAdapter;
 import com.lianmeng.core.activity.parser.FavoriteParser;
+import com.lianmeng.core.activity.parser.SuccessParser;
 import com.lianmeng.core.activity.vo.PageVo;
 import com.lianmeng.core.activity.vo.Product;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.util.Constant;
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.framework.util.NetUtil;
+import com.lianmeng.core.framework.util.SysU;
 
 public class MyFavoriteActivity extends BaseWapperActivity {
 	private static final String TAG = "MyFavoriteActivity";
@@ -30,16 +34,29 @@ public class MyFavoriteActivity extends BaseWapperActivity {
 	
 	@Override
 	protected void onHeadRightButton(View v) {
-		data.clear();
-		// 分页处理
-		if (pageView != null) {
-			myfavorite_product_list.removeFooterView(pageView);
+
+		HashMap<String, String> requestDataMap = new HashMap<String, String>();
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"MIMREMOVEFAVORITEPROD\",\"userId\":\""+SysU.USERID+"\",\"id\":\"\"}}";
+		requestDataMap.put("JsonData", inmapData);
+		RequestVo vo = new RequestVo(R.string.sysRequestServLet, context, requestDataMap,
+				new SuccessParser());
+		Boolean bool = (Boolean) NetUtil.post(vo);
+		if (bool != null) {
+			if (bool) {
+				data.clear();
+				// 分页处理
+				if (pageView != null) {
+					myfavorite_product_list.removeFooterView(pageView);
+				}
+				adapter.notifyDataSetChanged();
+				setHeadRightVisibility(View.INVISIBLE);
+				setContentView(R.layout.empty);
+				TextView tv = (TextView) this.findViewById(R.id.empty_text);
+				tv.setText("您的收藏夹还没有商品哦！亲");
+			}
 		}
-		adapter.notifyDataSetChanged();
-		setHeadRightVisibility(View.INVISIBLE);
-		setContentView(R.layout.empty);
-		TextView tv = (TextView) this.findViewById(R.id.empty_text);
-		tv.setText("您的收藏夹还没有商品哦！亲");
+		
+		
 	};
 	
 	@Override
@@ -101,8 +118,11 @@ public class MyFavoriteActivity extends BaseWapperActivity {
 		RequestVo favoriteRequeset = new RequestVo();
 		favoriteRequeset.context = this;
 		favoriteRequeset.jsonParser = new FavoriteParser();
-		favoriteRequeset.requestUrl = R.string.favorites;
+		
+		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASEFAVORITEPROD\",\"userId\":\""+SysU.USERID+"\"}}";
+		favoriteRequeset.requestUrl = R.string.sysRequestServLet;
 		favoriteRequeset.requestDataMap = new HashMap<String, String>();
+		favoriteRequeset.requestDataMap.put("JsonData", inmapData);
 		favoriteRequeset.requestDataMap.put("page", pageVo.wantedPageNum + "");
 		favoriteRequeset.requestDataMap.put("pageNum", pageVo.pageLenth + "");
 		getDataFromServer(favoriteRequeset, new DataCallback<List<Product>>() {

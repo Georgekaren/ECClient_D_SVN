@@ -12,4 +12,6 @@
     <color name="home_item">#ffd90000</color>
     <color name="home_item_selector">#ffc9c9c9</color>
     <color name="home_item_normal">#fff2f2f2</color>
+    <color name="editText">#AAAAAA</color>
+    <color name="blue">#008dff</color>
 </resources>

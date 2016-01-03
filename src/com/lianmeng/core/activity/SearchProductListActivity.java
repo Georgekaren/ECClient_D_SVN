@@ -139,11 +139,11 @@ public class SearchProductListActivity extends BaseWapperActivity implements OnI
 		map.put("page", 1 + "");
 		map.put("pageNum", 10 + "");
 		map.put("orderby", orderby);
-		try {
+		/*try {
 			keyWord=URLEncoder.encode(keyWord, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 
-		}
+		}*/
 		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYBASECONTENTPROD\",\"name\":\""+keyWord+"\",\"type\":\"\"";
 		if(orderby!=null){
 			inmapData=inmapData+",\"ordertype\":\""+orderby+"\"";

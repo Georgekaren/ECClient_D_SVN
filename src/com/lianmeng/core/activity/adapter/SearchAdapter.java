@@ -1,6 +1,9 @@
 package com.lianmeng.core.activity.adapter;
 
+import java.util.List;
+
 import com.lianmeng.core.activity.R;
+import com.lianmeng.core.activity.vo.StringV;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,9 +14,9 @@ import android.widget.TextView;
 
 public class SearchAdapter extends BaseAdapter {
 	private Context context;
-	private String[] search;
+	private List<StringV> search;
 	
-	public SearchAdapter(Context context,String[] search){
+	public SearchAdapter(Context context,List<StringV> search){
 		this.context = context;
 		this.search = search;
 		
@@ -23,7 +26,7 @@ public class SearchAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return search.length+1;
+		return search.size()+1;
 	}
 
 	@Override
@@ -49,7 +52,7 @@ public class SearchAdapter extends BaseAdapter {
 		}
 		TextView tv_content =  (TextView) View.inflate(context, R.layout.search_item, null);
 			tv_content.setTextColor(Color.BLACK);	
-			tv_content.setText("   "+search[position-1]);
+			tv_content.setText("   "+search.get(position-1).getName());
 			
 			return tv_content;
 	}

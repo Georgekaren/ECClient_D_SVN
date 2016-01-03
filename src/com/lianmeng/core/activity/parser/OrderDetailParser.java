@@ -62,7 +62,7 @@ public class OrderDetailParser extends BaseParser<Map<String,Object>> {
 		map.put("checkout", checkoutList);
 		Logger.d(TAG, "解析checkout 成功");
 		
-		String checkout_addup = json.getString("checkout _addup");
+		String checkout_addup = json.getString("checkout_addup");
 		CheckoutAddup checkoutAdd = JSON.parseObject(checkout_addup,CheckoutAddup.class);
 		map.put("checkoutAdd", checkoutAdd);
 		Logger.d(TAG, "解析checkoutAdd 成功");

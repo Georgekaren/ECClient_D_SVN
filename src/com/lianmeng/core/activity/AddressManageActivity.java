@@ -22,6 +22,7 @@ import com.lianmeng.core.activity.parser.SuccessParser;
 import com.lianmeng.core.activity.vo.AddressDetail;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.util.NetUtil;
+import com.lianmeng.core.framework.util.SysU;
 
 /**
  * 地址管理
@@ -72,7 +73,11 @@ public class AddressManageActivity extends BaseWapperActivity implements OnItemB
 	@Override
 	protected void processLogic() {
 
-		RequestVo reqVo = new RequestVo(R.string.url_addresslist, this, null, new AddressManageParser());
+		String inmapData="{\"ServiceName\":\"addressManagerService\" , \"Data\":{\"ACTION\":\"QRYADDRESSLIST\",\"userId\":\""+SysU.USERID+"\"}}";
+		HashMap<String, String> prodMap = new HashMap<String, String>();
+		prodMap.put("JsonData", inmapData);
+		RequestVo reqVo = new RequestVo(R.string.sysRequestServLet, this, prodMap, new AddressManageParser());
+		
 		getDataFromServer(reqVo, new DataCallback<List<AddressDetail>>() {
 
 			@Override
@@ -106,7 +111,9 @@ public class AddressManageActivity extends BaseWapperActivity implements OnItemB
 				public void onClick(DialogInterface dialog, int which) {
 					HashMap<String, String> requestDataMap = new HashMap<String, String>();
 					requestDataMap.put("id", item.getId() + "");
-					RequestVo vo = new RequestVo(R.string.url_addressdelete, context, requestDataMap,
+					String inmapData="{\"ServiceName\":\"addressManagerService\" , \"Data\":{\"ACTION\":\"REMOVEADDRESS\",\"userId\":\""+SysU.USERID+"\",\"id\":\""+item.getId() +"\"}}";
+					requestDataMap.put("JsonData", inmapData);
+					RequestVo vo = new RequestVo(R.string.sysRequestServLet, context, requestDataMap,
 							new SuccessParser());
 					Boolean bool = (Boolean) NetUtil.post(vo);
 					if (bool != null) {
@@ -141,7 +148,9 @@ public class AddressManageActivity extends BaseWapperActivity implements OnItemB
 			public void onClick(DialogInterface dialog, int which) {
 				HashMap<String, String> requestDataMap = new HashMap<String, String>();
 				requestDataMap.put("id", item.getId() + "");
-				RequestVo vo = new RequestVo(R.string.url_addressdefault, context, requestDataMap,
+				String inmapData="{\"ServiceName\":\"addressManagerService\" , \"Data\":{\"ACTION\":\"MODIFYDEFAULT\",\"userId\":\""+SysU.USERID+"\",\"id\":\""+item.getId() +"\",\"isDefault\":\"1\"}}";
+				requestDataMap.put("JsonData", inmapData);
+				RequestVo vo = new RequestVo(R.string.sysRequestServLet, context, requestDataMap,
 						new SuccessParser());
 				Boolean bool = (Boolean) NetUtil.post(vo);
 				if (bool != null) {

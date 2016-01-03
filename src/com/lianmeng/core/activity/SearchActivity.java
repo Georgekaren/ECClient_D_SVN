@@ -1,6 +1,7 @@
 package com.lianmeng.core.activity;
 
 import java.util.HashMap;
+import java.util.List;
 
 import android.content.Intent;
 import android.view.View;
@@ -13,14 +14,16 @@ import android.widget.TextView;
 import com.lianmeng.core.activity.R;
 import com.lianmeng.core.activity.adapter.SearchAdapter;
 import com.lianmeng.core.activity.parser.SearchRecommondParser;
+import com.lianmeng.core.activity.parser.StringVParser;
 import com.lianmeng.core.activity.vo.RequestVo;
+import com.lianmeng.core.activity.vo.StringV;
 import com.lianmeng.core.framework.util.CommonUtil;
 import com.lianmeng.core.framework.util.Constant;
 
 public class SearchActivity extends BaseWapperActivity {
 	private EditText keyWordEdit;
  	private ListView hotWordsLv;
-	private String [] search;
+	private List<StringV> search;
 	
 	
 	
@@ -64,7 +67,7 @@ public class SearchActivity extends BaseWapperActivity {
 			return;
 		}
 		Intent intent = new Intent(SearchActivity.this,SearchProductListActivity.class);
-		intent.putExtra("keyword", keyWord);
+		intent.putExtra("keyWord", keyWord);
 		startActivity(intent);
  	}
 
@@ -91,17 +94,19 @@ public class SearchActivity extends BaseWapperActivity {
 		showProgressDialog();
 		RequestVo vo = new RequestVo();
 		vo.context = SearchActivity.this;
-		vo.jsonParser = new SearchRecommondParser();
+		vo.jsonParser = new StringVParser();
 		vo.requestUrl = R.string.sysRequestServLet;
 		HashMap<String, String> prodMap = new HashMap<String, String>();
 		String inmapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"QRYPRODFINALSLIST\",\"finalkeyword\":\"SUBBRAND\"}}";
 		prodMap.put("JsonData", inmapData);
 		vo.requestDataMap = prodMap;
 		
-		super.getDataFromServer(vo, new DataCallback<String []>() {
+		super.getDataFromServer(vo, new DataCallback<List<StringV>>() {
+
 
 			@Override
-			public void processData(String[] paramObject, boolean paramBoolean) {
+			public void processData(List<StringV> paramObject,
+					boolean paramBoolean) {
 				if(paramObject!=null){
 					search = paramObject;
 					SearchAdapter adapter = new SearchAdapter(context,paramObject);

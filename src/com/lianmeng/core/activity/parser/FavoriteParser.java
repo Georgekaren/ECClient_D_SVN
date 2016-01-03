@@ -16,7 +16,7 @@ public class FavoriteParser extends BaseParser<List<Product>> {
 	public List<Product> parseJSON(String paramString) throws JSONException {
 		Logger.d(TAG, "解析收藏夹中的内容");
 		JSONObject json = new JSONObject(paramString);
-		String productlist = json.getString("productlist");
+		String productlist = json.getString("DATA_INFO");
 		List<Product> products = JSON.parseArray(productlist, Product.class);
 		return products;
 	}

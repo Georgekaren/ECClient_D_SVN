@@ -30,6 +30,15 @@ public class AddressDetail implements Parcelable {
 
 	/** 地区ID */
 	private int areaid;
+	
+	/** 省 */
+	private String provinceName;
+
+	/** 市 */
+	private String cityName;
+
+	/** 地区 */
+	private String areaName;
 
 	/** 订单地址 */
 	private String areadetail;
@@ -41,7 +50,7 @@ public class AddressDetail implements Parcelable {
 	}
 
 	public AddressDetail(int id, String name, String phonenumber, String fixedtel, int provinceid, int cityid,
-			int areaid, String areadetail, String zipcode) {
+			int areaid, String areadetail, String zipcode, String provinceName, String cityName, String areaName) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -52,6 +61,9 @@ public class AddressDetail implements Parcelable {
 		this.areaid = areaid;
 		this.areadetail = areadetail;
 		this.zipcode = zipcode;
+		this.provinceName = provinceName;
+		this.cityName = cityName;
+		this.areaName = areaName;
 	}
 	public int getId() {
 		return id;
@@ -132,6 +144,30 @@ public class AddressDetail implements Parcelable {
 		result = prime * result + id;
 		return result;
 	}
+	
+	public String getProvinceName() {
+		return provinceName;
+	}
+
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getAreaName() {
+		return areaName;
+	}
+
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -151,7 +187,7 @@ public class AddressDetail implements Parcelable {
 	public String toString() {
 		return "AddressDetail [id=" + id + ", name=" + name + ", phonenumber=" + phonenumber + ", fixedtel=" + fixedtel
 				+ ", provinceid=" + provinceid + ", cityid=" + cityid + ", areaid=" + areaid + ", areadetail="
-				+ areadetail + ", zipcode=" + zipcode + "]";
+				+ areadetail + ", zipcode=" + zipcode + ", provinceName=" + provinceName + ", cityName=" + cityName + ", areaName=" + areaName + "]";
 	}
 
 	@Override
@@ -169,6 +205,10 @@ public class AddressDetail implements Parcelable {
 		dest.writeInt(provinceid);
 		dest.writeInt(cityid);
 		dest.writeInt(areaid);
+		
+		dest.writeString(provinceName);
+		dest.writeString(cityName);
+		dest.writeString(areaName);
 
 		dest.writeString(areadetail);
 		dest.writeString(zipcode);
@@ -185,6 +225,10 @@ public class AddressDetail implements Parcelable {
 		cityid = in.readInt();
 		areaid = in.readInt();
 
+		provinceName = in.readString();
+		cityName = in.readString();
+		areaName = in.readString();
+		
 		areadetail = in.readString();
 		zipcode = in.readString();
 	}

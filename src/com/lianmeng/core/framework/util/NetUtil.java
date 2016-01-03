@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +56,8 @@ public class NetUtil {
 		headers[8] = new BasicHeader("Usersession", "");
 		headers[9] = new BasicHeader("Unique", "");
 		headers[10] = new BasicHeader("Cookie", "");
+		//headers[11] = new BasicHeader("charset", "UTF-8");
+		
 		
 	}
 	
@@ -67,13 +70,14 @@ public class NetUtil {
 		Logger.d(TAG, "Post " + url);
 		HttpPost post = new HttpPost(url);
 		post.setHeaders(headers);
+		post.addHeader("charset", HTTP.UTF_8);
 		Object obj = null;
 		try {
 			if (vo.requestDataMap != null) {
 				HashMap<String, String> map = vo.requestDataMap;
 				if(map.get("JsonData")!=null&&!"".equals(map.get("JsonData"))){
 					post.addHeader(HTTP.CONTENT_TYPE, SysU.APPLICATION_JSON);
-			        StringEntity se = new StringEntity(map.get("JsonData").toString());
+			        StringEntity se = new StringEntity(URLEncoder.encode(map.get("JsonData")).toString(), HTTP.UTF_8);
 			        se.setContentType(SysU.CONTENT_TYPE_TEXT_JSON);
 			        se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, SysU.APPLICATION_JSON));
 			        post.setEntity(se);

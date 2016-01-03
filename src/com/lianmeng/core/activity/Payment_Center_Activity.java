@@ -56,7 +56,14 @@ public class Payment_Center_Activity extends BaseWapperActivity {
 	@Override
 	protected void onHeadRightButton(View v) {
 		finish();
-		Intent intent = new Intent(this,OrdrSubmitOkActivity.class);
+		Intent intent = new Intent(this,PaySelectMainActivity.class);
+		intent.putExtra("userId", SysU.USERID);
+		String prodIds="[";
+		for(int i=0;i<productlistInfo.size();i++){
+			prodIds=prodIds+"\""+productlistInfo.get(i).id+"\",";
+		}
+		prodIds=prodIds+"]";
+		intent.putExtra("prodId",prodIds);
 		startActivity(intent);
 	}
 	@Override
@@ -64,7 +71,16 @@ public class Payment_Center_Activity extends BaseWapperActivity {
 		switch (v.getId()) {
 		case R.id.ordr_submit_bottom_text:
 			finish();
-			Intent intent = new Intent(this,OrdrSubmitOkActivity.class);
+			//Intent intent = new Intent(this,OrdrSubmitOkActivity.class);
+			//startActivity(intent);
+			Intent intent = new Intent(this,PaySelectMainActivity.class);
+			intent.putExtra("userId", SysU.USERID);
+			String prodIds="[";
+			for(int i=0;i<productlistInfo.size();i++){
+				prodIds=prodIds+"\""+productlistInfo.get(i).id+"\",";
+			}
+			prodIds=prodIds+"]";
+			intent.putExtra("prodId",prodIds);
 			startActivity(intent);
 			break;
 		case R.id.select_address:
@@ -78,6 +94,9 @@ public class Payment_Center_Activity extends BaseWapperActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == 2000 && resultCode == 200) {
 			AddressDetail parcelableExtra = data.getParcelableExtra("address");
+			textAdress2.setText(parcelableExtra.getName());
+			textAdress3.setText(parcelableExtra.getAreaName());
+			textAdress4.setText(parcelableExtra.getAreadetail());
 			Logger.d(TAG, "已选择地址" + parcelableExtra.toString());
 		}
 			

@@ -21,6 +21,7 @@ import com.lianmeng.core.activity.vo.Area;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.dao.AreaDao;
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.framework.util.SysU;
 
 /**
  * 
@@ -98,23 +99,34 @@ public class AddAddressActivity extends BaseWapperActivity implements OnItemSele
 			requestDataMap.put("phonenumber", mMobileEdit.getText().toString());
 			requestDataMap.put("fixedtel", mTelEdit.getText().toString());
 			StringBuilder builder = new StringBuilder();
+			String provinceId="",cityId="",areaId="";
 			Area area = (Area) mProvinceSpinner.getSelectedItem();
 			builder.append(area.getId());
+			provinceId=String.valueOf(area.getId());
 			builder.append(",");
 			area = (Area) mCitySpinner.getSelectedItem();
+			cityId=String.valueOf(area.getId());
 			builder.append(area.getId());
 			builder.append(",");
 			area = (Area) mAreaSpinner.getSelectedItem();
+			areaId=String.valueOf(area.getId());
 			builder.append(area.getId());
 			requestDataMap.put("areaid", builder.toString());
 			requestDataMap.put("areadetail", mDetailEdit.getText().toString());
 			requestDataMap.put("zipcode", mZipcodeEdit.getText().toString());
 
+			String editId="";
+			String serviceFunction="ADDADDRESS";
 			if (isEdit) {
 				requestDataMap.put("id", address.getId() + "");
+				editId=address.getId() + "";
+				serviceFunction="MODIFYADDRESS";
 			}
-
-			RequestVo vo = new RequestVo(R.string.url_addresssave, this, requestDataMap, new AddressManageParser());
+			String inmapData="{\"ServiceName\":\"addressManagerService\" , \"Data\":{\"ACTION\":\""+serviceFunction+"\",\"userId\":\""+SysU.USERID+"\"" +
+        		",\"id\":\""+editId+"\",\"name\":\""+mNameEdit.getText().toString()+"\",\"teleNo\":\""+mMobileEdit.getText().toString()+"\",\"fixedTelNo\":\""+mTelEdit.getText().toString()+"\",\"provinceId\":\""+provinceId+"\",\"cityId\":\""+cityId+"\",\"areaId\":\""+areaId+"\"" +
+        		",\"detail\":\""+mDetailEdit.getText().toString()+"\",\"zipCode\":\""+mZipcodeEdit.getText().toString()+"\",\"isDefault\":\"0\",\"level\":\"4\",\"position\":\"1\",\"note\":\"1\"}}";
+			requestDataMap.put("JsonData", inmapData);
+			RequestVo vo = new RequestVo(R.string.sysRequestServLet, this, requestDataMap, new AddressManageParser());
 			getDataFromServer(vo, new DataCallback<ArrayList<AddressDetail>>() {
 
 				@Override

@@ -10,7 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class AreaDao extends BaseDao {
-	public static String TABLE = "pub_cant";
+	public static String TABLE = "pubs_cant";
 
 	public AreaDao(Context context) {
 		super(context);

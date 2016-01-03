@@ -22,7 +22,7 @@ public class AddressManageParser extends BaseParser<List<AddressDetail>> {
 	public List<AddressDetail> parseJSON(String paramString) throws JSONException {
 		if (!TextUtils.isEmpty(checkResponse(paramString))) {
 			JSONObject j = new JSONObject(paramString);
-			String addresslist = j.getString("addresslist");
+			String addresslist = j.getString("DATA_INFO");
 			return JSON.parseArray(addresslist, AddressDetail.class);
 		}
 		return null;

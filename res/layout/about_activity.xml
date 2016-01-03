@@ -34,13 +34,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25.0dip"
-            android:text="© 2004-2012" />
+            android:text="© 2016-2020" />
 
         <TextView
             style="@style/style_14_666666_BOLD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="北京红孩子互联科技有限公司" />
+            android:text="廉盟有限公司" />
     </LinearLayout>
 
 

@@ -28,6 +28,7 @@ import com.lianmeng.core.activity.vo.ProdcutHistory;
 import com.lianmeng.core.activity.vo.ProductDetail;
 import com.lianmeng.core.activity.vo.RequestVo;
 import com.lianmeng.core.framework.util.Logger;
+import com.lianmeng.core.framework.util.SysU;
 
 public class ProductDetailActivity extends BaseWapperActivity {
 
@@ -57,7 +58,9 @@ public class ProductDetailActivity extends BaseWapperActivity {
 				return ;
 			HashMap<String, String> requestDataMap = new HashMap<String, String>();
 			requestDataMap.put("id", currentProduct.getId() + "");
-			RequestVo reqVo = new RequestVo(R.string.url_productcollect, context, requestDataMap, new SuccessParser());
+			String inMapData="{\"ServiceName\":\"extProdManagerService\" , \"Data\":{\"ACTION\":\"MIMADDFAVORITEPROD\",\"userId\":\""+SysU.USERID+"\",\"id\":\""+currentProduct.getId() +"\"}}";
+			requestDataMap.put("JsonData", inMapData);
+			RequestVo reqVo = new RequestVo(R.string.sysRequestServLet, context, requestDataMap, new SuccessParser());
 			getDataFromServer(reqVo, new DataCallback<Boolean>() {
 
 				@Override
@@ -156,7 +159,7 @@ public class ProductDetailActivity extends BaseWapperActivity {
 				HashMap<String, String> requestDataMa = new HashMap<String, String>();
 				requestDataMa.put("id", currentProduct.getId() + "");
 				requestDataMa.put("count", prodNumValue.getText().toString());
-				String inMap="{\"ServiceName\":\"srvOrderManagerService\" , \"Data\":{\"ACTION\":\"ADDORDER\",\"prodId\":\""+currentProduct.getId()+"\",\"userId\":\"1\",\"prodNum\":\""+prodNumValue.getText().toString()+"\",\"totalPrice\":\"13\"}}";
+				String inMap="{\"ServiceName\":\"srvOrderManagerService\" , \"Data\":{\"ACTION\":\"ADDORDER\",\"prodId\":[\""+currentProduct.getId()+"\"],\"userId\":\""+SysU.USERID+"\",\"prodNum\":\""+prodNumValue.getText().toString()+"\",\"totalPrice\":\"13\"}}";
 				requestDataMa.put("JsonData", inMap);
 				RequestVo reqVo = new RequestVo(R.string.sysRequestServLet, context, requestDataMa , new SuccessParser());
 				getDataFromServer(reqVo , new DataCallback<Boolean>() {
