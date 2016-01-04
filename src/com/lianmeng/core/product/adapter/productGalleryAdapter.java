@@ -55,9 +55,13 @@ public class productGalleryAdapter extends BaseAdapter {
 			imageView = (ImageView) convertView;
 		}
 		String imageUrl = pic.get(position%pic.size());
-		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(imageUrl));
+		String iImageUrl=imageUrl;
+		if(iImageUrl!=null&&!iImageUrl.startsWith("http")){
+			iImageUrl=context.getString(R.string.sysRequestHost)+imageUrl;
+		}
+		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(iImageUrl));
 		imageView.setTag(imagePath);
-		Bitmap bitmap = ImageUtil.loadImage(imagePath, imageUrl, new ImageCallback() {
+		Bitmap bitmap = ImageUtil.loadImage(imagePath, iImageUrl, new ImageCallback() {
 			
 			@Override
 			public void loadImage(Bitmap bitmap, String imagePath) {

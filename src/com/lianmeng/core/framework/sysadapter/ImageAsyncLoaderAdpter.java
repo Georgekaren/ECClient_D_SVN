@@ -2,6 +2,7 @@ package com.lianmeng.core.framework.sysadapter;
 
 import java.util.List;
 
+import com.lianmeng.core.activity.R;
 import com.lianmeng.core.framework.engine.SyncImageLoader;
 
 import android.content.Context;
@@ -37,6 +38,10 @@ public class ImageAsyncLoaderAdpter<T> extends ArrayWapperAdapter<T> {
 	}
 
 	public void loadImage(Integer t, String imageUrl) {
+		String iImageUrl=imageUrl;
+		if(iImageUrl!=null&&!iImageUrl.startsWith("http")){
+			iImageUrl=getContext().getString(R.string.sysRequestHost)+imageUrl;
+		}
 		syncImageLoader.loadImage(t, imageUrl, imageLoadListener);
 	}
 

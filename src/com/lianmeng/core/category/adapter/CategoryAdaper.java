@@ -64,8 +64,12 @@ private static final String TAG = "CategoryAdaper";
 		holder.tv_content = (TextView) convertView.findViewById(R.id.textContent);
 		holder.tv_describe = (TextView) convertView.findViewById(R.id.item_describe);
 		String imgUrl = vo.getPic();
-		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(imgUrl));
-		Bitmap bitmap = ImageUtil.loadImage(imagePath, imgUrl, new ImageCallback(){
+		String iImageUrl=imgUrl;
+		if(iImageUrl!=null&&!iImageUrl.startsWith("http")){
+			iImageUrl=context.getString(R.string.sysRequestHost)+imgUrl;
+		}
+		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(iImageUrl));
+		Bitmap bitmap = ImageUtil.loadImage(imagePath, iImageUrl, new ImageCallback(){
 
 			@Override
 			public void loadImage(Bitmap bitmap, String imagePath) {

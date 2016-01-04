@@ -138,8 +138,12 @@ class MyGridViewAdapter extends BaseAdapter implements OnClickListener{
 		
 		id = brandCategory.getValue().get(position).getId() + "";
 		String imageUrl = brandCategory.getValue().get(position).getPic();
-		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(imageUrl));
-		Bitmap bitmap = ImageUtil.loadImage(imagePath, imageUrl, callback);
+		String iImageUrl=imageUrl;
+		if(iImageUrl!=null&&!iImageUrl.startsWith("http")){
+			iImageUrl=context.getString(R.string.sysRequestHost)+imageUrl;
+		}
+		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(iImageUrl));
+		Bitmap bitmap = ImageUtil.loadImage(imagePath, iImageUrl, callback);
 		if(bitmap==null){//从网站加载
 			//设置默认图片
 			iv.setImageResource(R.drawable.product_loading);

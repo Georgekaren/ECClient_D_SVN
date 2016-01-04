@@ -80,9 +80,13 @@ public class SearchResultAdapter extends BaseAdapter {
 		holderView.textClothesPrice.setText(products.get(position).price  + "");
 		holderView.textMarketPrice.setText(products.get(position).marketprice  + "");
 		String imageUrl = products.get(position).pic;
-		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(imageUrl));
-		holderView.goodsIconIv.setTag(imagePath);//��ͼƬ���ʶ
-		Bitmap bitmap = ImageUtil.loadImage(imagePath, imageUrl, callback);
+		String iImageUrl=imageUrl;
+		if(iImageUrl!=null&&!iImageUrl.startsWith("http")){
+			iImageUrl=context.getString(R.string.sysRequestHost)+imageUrl;
+		}
+		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(iImageUrl));
+		holderView.goodsIconIv.setTag(imagePath);//
+		Bitmap bitmap = ImageUtil.loadImage(imagePath, iImageUrl, callback);
 		if(bitmap!=null){
 			holderView.goodsIconIv.setImageBitmap(bitmap);
 		}else{

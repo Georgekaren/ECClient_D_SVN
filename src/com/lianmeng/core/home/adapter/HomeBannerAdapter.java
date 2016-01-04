@@ -33,8 +33,13 @@ public class HomeBannerAdapter extends BaseAdapter implements OnImageLoadListene
 		drawables = new Drawable[size];
 		syncImageLoader.setLoadLimit(0, size);
 		//加载图片
+		
 		for (int i = 0; i < size; i++) {
-			syncImageLoader.loadImage(i, arrayList.get(i).getUrl(), this);
+			String iImageUrl=arrayList.get(i).getUrl();
+			if(iImageUrl!=null&&!iImageUrl.startsWith("http")){
+				iImageUrl=context.getString(R.string.sysRequestHost)+iImageUrl;
+			}
+			syncImageLoader.loadImage(i, iImageUrl, this);
 		}
 	}
 

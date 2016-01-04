@@ -103,12 +103,13 @@ public class ShoppingCarAdapter extends BaseAdapter  implements OnClickListener 
             }  
         });  
 		String imageUrl =cartProduct.pic;
-		
-		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(imageUrl));
-		//System.out.println(imagePath);
+		String iImageUrl=imageUrl;
+		if(iImageUrl!=null&&!iImageUrl.startsWith("http")){
+			iImageUrl=context.getString(R.string.sysRequestHost)+imageUrl;
+		}
+		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(iImageUrl));
 		shopcar_item_prodImage_img.setTag(imagePath);
-		//System.out.println(12345);
-		Bitmap bitmap = ImageUtil.loadImage(imagePath, imageUrl, new ImageCallback() {
+		Bitmap bitmap = ImageUtil.loadImage(imagePath, iImageUrl, new ImageCallback() {
 			
 			@Override
 			public void loadImage(Bitmap bitmap, String imagePath) {

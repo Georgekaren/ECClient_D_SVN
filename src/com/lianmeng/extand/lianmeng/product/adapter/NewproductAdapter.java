@@ -58,7 +58,11 @@ public class NewproductAdapter extends ArrayWapperAdapter<ProductListVo> {
 		holderView.textMarketPrice.setText("￥" + String.valueOf(list.get(position).getMarketprice()));
 		holderView.textProductCommentNum.setText(String.valueOf(list.get(position).getComment_count()+""));
 		String imageUrl = list.get(position).getPic();
-		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(imageUrl));
+		String iImageUrl=imageUrl;
+		if(iImageUrl!=null&&!iImageUrl.startsWith("http")){
+			iImageUrl=context.getString(R.string.sysRequestHost)+imageUrl;
+		}
+		String imagePath = ImageUtil.getCacheImgPath().concat(ImageUtil.md5(iImageUrl));
 		holderView.goodsIconIv.setTag(imagePath);//给图片打标识
 		Bitmap bitmap = ImageUtil.loadImage(imagePath, imageUrl, callback);
 		if(bitmap==null){//从网站加载
